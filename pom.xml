@@ -27,7 +27,7 @@
         <version.openjfx>11</version.openjfx>
         <version.fxyzlib>0.3.0-patched</version.fxyzlib>
         <version.objimporterjfx>0.8</version.objimporterjfx>
-        <version.junit>5.2.0</version.junit>
+        <version.junit>5.10.0</version.junit>
         <version.junit.platform>1.2.0</version.junit.platform>
         <version.junit.jupiter>RELEASE</version.junit.jupiter>
     </properties>

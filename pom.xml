@@ -27,9 +27,8 @@
         <version.openjfx>11</version.openjfx>
         <version.fxyzlib>0.3.0-patched</version.fxyzlib>
         <version.objimporterjfx>0.8</version.objimporterjfx>
-        <version.junit>5.2.0</version.junit>
-        <version.junit.platform>1.2.0</version.junit.platform>
-        <version.junit.jupiter>RELEASE</version.junit.jupiter>
+        <version.junit5>5.10.0</version.junit5>
+        <version.junit.platform>1.10.0</version.junit.platform>
     </properties>
 
     <!-- Build -->
@@ -266,39 +265,9 @@
         <!-- Testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${version.junit}</version>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${version.junit5}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${version.junit}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>${version.junit}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <version>${version.junit.platform}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-runner</artifactId>
-            <version>${version.junit.platform}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${version.junit.jupiter}</version>
-            <scope>compile</scope>
         </dependency>
 
     </dependencies>

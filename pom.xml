@@ -50,38 +50,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
                 <version>${version.maven-install-plugin}</version>
-                <executions>
-                    <execution>
-                        <id>copy-fxyzlib</id>
-                        <phase>validate</phase>
-                        <configuration>
-                            <file>${project.basedir}/lib/fxyzlib-0.3.0-patched.jar</file>
-                            <groupId>org.fxyz</groupId>
-                            <artifactId>fxyzlib</artifactId>
-                            <version>${version.fxyzlib}</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>copy-objmodelimporter</id>
-                        <phase>validate</phase>
-                        <configuration>
-                            <file>${project.basedir}/lib/objmodelimporterjfx-0.8.jar</file>
-                            <groupId>com.interactivemesh</groupId>
-                            <artifactId>objmodelimporterjfx</artifactId>
-                            <version>${version.objimporterjfx}</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
@@ -284,11 +252,15 @@
             <groupId>org.fxyz</groupId>
             <artifactId>fxyzlib</artifactId>
             <version>${version.fxyzlib}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/fxyzlib-0.3.0-patched.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.interactivemesh</groupId>
             <artifactId>objmodelimporterjfx</artifactId>
             <version>${version.objimporterjfx}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/objmodelimporterjfx-0.8.jar</systemPath>
         </dependency>
 
         <!-- Testing -->

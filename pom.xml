@@ -23,7 +23,7 @@
         <version.activation>1.2.0</version.activation>
         <version.jaxb-api>2.3.1</version.jaxb-api>
         <version.jaxb-core>2.3.0.1</version.jaxb-core>
-        <version.jaxb-runtime>2.3.1</version.jaxb-runtime>
+        <version.jaxb-runtime>4.0.3</version.jaxb-runtime>
         <version.openjfx>11.0.2</version.openjfx>
         <version.fxyzlib>0.3.0-patched</version.fxyzlib>
         <version.objimporterjfx>0.8</version.objimporterjfx>

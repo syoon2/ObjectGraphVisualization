@@ -1,9 +1,10 @@
 package ch.hsr.ogv.view;
 
-import ch.hsr.ogv.model.EndpointType;
-import ch.hsr.ogv.util.ObjModelLoader;
-import ch.hsr.ogv.util.ResourceLocator;
-import ch.hsr.ogv.util.ResourceLocator.Resource;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
@@ -11,10 +12,10 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.MeshView;
 import javafx.scene.transform.Rotate;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import ch.hsr.ogv.model.EndpointType;
+import ch.hsr.ogv.util.ObjModelLoader;
+import ch.hsr.ogv.util.ResourceLocator;
+import ch.hsr.ogv.util.ResourceLocator.Resource;
 
 public class ArrowEdge extends Group {
 

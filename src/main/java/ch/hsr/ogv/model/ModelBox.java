@@ -1,7 +1,7 @@
 package ch.hsr.ogv.model;
 
-import ch.hsr.ogv.dataaccess.ColorAdapter;
-import ch.hsr.ogv.dataaccess.Point3DAdapter;
+import java.util.*;
+
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 
@@ -10,7 +10,9 @@ import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.*;
+
+import ch.hsr.ogv.dataaccess.ColorAdapter;
+import ch.hsr.ogv.dataaccess.Point3DAdapter;
 
 @XmlType(propOrder = {"name", "coordinates", "width", "height", "color", "endpoints"})
 public abstract class ModelBox extends Observable {

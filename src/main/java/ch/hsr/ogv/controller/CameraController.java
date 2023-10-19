@@ -1,11 +1,11 @@
 package ch.hsr.ogv.controller;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import ch.hsr.ogv.view.SubSceneAdapter;
 import ch.hsr.ogv.view.SubSceneCamera;
 import ch.hsr.ogv.view.Xform;
-
-import java.util.Observable;
-import java.util.Observer;
 
 public class CameraController implements Observer {
 

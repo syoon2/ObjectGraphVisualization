@@ -1,9 +1,7 @@
 package ch.hsr.ogv.view;
 
-import ch.hsr.ogv.util.ColorUtil;
-import ch.hsr.ogv.util.FXMLResourceUtil;
-import ch.hsr.ogv.util.ResourceLocator.Resource;
-import ch.hsr.ogv.util.TextUtil;
+import java.util.ArrayList;
+
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Point3D;
@@ -17,11 +15,14 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
-import org.apache.logging.log4j.Level;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
+import ch.hsr.ogv.util.ColorUtil;
+import ch.hsr.ogv.util.FXMLResourceUtil;
+import ch.hsr.ogv.util.ResourceLocator.Resource;
+import ch.hsr.ogv.util.TextUtil;
 
 public class PaneBox implements Selectable {
 

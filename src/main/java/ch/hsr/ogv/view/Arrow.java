@@ -1,8 +1,8 @@
 package ch.hsr.ogv.view;
 
-import ch.hsr.ogv.model.RelationType;
-import ch.hsr.ogv.util.ColorUtil;
-import ch.hsr.ogv.util.GeometryUtil;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.geometry.Point2D;
 import javafx.geometry.Point3D;
 import javafx.scene.Group;
@@ -12,8 +12,9 @@ import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
-import java.util.ArrayList;
-import java.util.List;
+import ch.hsr.ogv.model.RelationType;
+import ch.hsr.ogv.util.ColorUtil;
+import ch.hsr.ogv.util.GeometryUtil;
 
 public class Arrow extends Group implements Selectable {
 

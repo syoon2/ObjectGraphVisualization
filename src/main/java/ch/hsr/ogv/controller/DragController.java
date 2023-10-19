@@ -1,12 +1,13 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.view.PaneBox;
-import ch.hsr.ogv.view.SubSceneAdapter;
+import java.util.Observable;
+
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 
-import java.util.Observable;
+import ch.hsr.ogv.view.PaneBox;
+import ch.hsr.ogv.view.SubSceneAdapter;
 
 public abstract class DragController extends Observable {
 

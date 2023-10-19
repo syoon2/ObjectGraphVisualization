@@ -6,6 +6,7 @@ import javafx.scene.DepthTest;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+
 import org.fxyz.shapes.primitives.CuboidMesh;
 
 public class Cuboid extends Group {

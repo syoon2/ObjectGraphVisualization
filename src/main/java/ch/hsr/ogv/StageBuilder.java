@@ -1,12 +1,7 @@
 package ch.hsr.ogv;
 
-import ch.hsr.ogv.controller.*;
-import ch.hsr.ogv.dataaccess.Persistence;
-import ch.hsr.ogv.dataaccess.UserPreferences;
-import ch.hsr.ogv.util.FXMLResourceUtil;
-import ch.hsr.ogv.util.ResourceLocator;
-import ch.hsr.ogv.util.ResourceLocator.Resource;
-import ch.hsr.ogv.view.SubSceneAdapter;
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
@@ -19,7 +14,13 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
+import ch.hsr.ogv.controller.*;
+import ch.hsr.ogv.dataaccess.Persistence;
+import ch.hsr.ogv.dataaccess.UserPreferences;
+import ch.hsr.ogv.util.FXMLResourceUtil;
+import ch.hsr.ogv.util.ResourceLocator;
+import ch.hsr.ogv.util.ResourceLocator.Resource;
+import ch.hsr.ogv.view.SubSceneAdapter;
 
 /**
  * Initialises the stage and the controllers.

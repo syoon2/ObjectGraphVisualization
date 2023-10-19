@@ -1,17 +1,19 @@
 package ch.hsr.ogv.model;
 
-import ch.hsr.ogv.util.ColorUtil;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlType;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
+
+import ch.hsr.ogv.util.ColorUtil;
 
 @XmlType(propOrder = {"attributes", "modelObjects"})
 public class ModelClass extends ModelBox {

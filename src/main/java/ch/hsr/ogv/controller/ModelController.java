@@ -1,16 +1,17 @@
 package ch.hsr.ogv.controller;
 
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
+import javafx.scene.Node;
+import javafx.scene.layout.BorderPane;
+
 import ch.hsr.ogv.model.*;
 import ch.hsr.ogv.model.ModelBox.ModelBoxChange;
 import ch.hsr.ogv.model.Relation.RelationChange;
 import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.view.*;
-import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
-
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 
 public class ModelController implements Observer {
 

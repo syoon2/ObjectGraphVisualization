@@ -1,12 +1,12 @@
 package ch.hsr.ogv.util;
 
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class TextUtil {
 

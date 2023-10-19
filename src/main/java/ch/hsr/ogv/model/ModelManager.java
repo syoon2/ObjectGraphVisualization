@@ -1,11 +1,12 @@
 package ch.hsr.ogv.model;
 
-import ch.hsr.ogv.util.ColorUtil;
-import ch.hsr.ogv.util.TextUtil;
+import java.util.*;
+
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 
-import java.util.*;
+import ch.hsr.ogv.util.ColorUtil;
+import ch.hsr.ogv.util.TextUtil;
 
 public class ModelManager extends Observable {
 

@@ -1,16 +1,18 @@
 package ch.hsr.ogv;
 
-import ch.hsr.ogv.util.ResourceLocator;
-import ch.hsr.ogv.util.ResourceLocator.Resource;
+import java.lang.Thread.UncaughtExceptionHandler;
+import java.util.Locale;
+
 import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.Thread.UncaughtExceptionHandler;
-import java.util.Locale;
+import ch.hsr.ogv.util.ResourceLocator;
+import ch.hsr.ogv.util.ResourceLocator.Resource;
 
 /**
  * Starts the FX application.

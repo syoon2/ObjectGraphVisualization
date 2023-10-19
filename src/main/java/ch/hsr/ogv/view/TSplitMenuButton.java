@@ -1,12 +1,13 @@
 package ch.hsr.ogv.view;
 
-import ch.hsr.ogv.util.ResourceLocator;
-import ch.hsr.ogv.util.ResourceLocator.Resource;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableMap;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+
+import ch.hsr.ogv.util.ResourceLocator;
+import ch.hsr.ogv.util.ResourceLocator.Resource;
 
 public class TSplitMenuButton implements Toggle {
 

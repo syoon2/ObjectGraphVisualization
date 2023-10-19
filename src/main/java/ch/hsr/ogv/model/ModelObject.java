@@ -1,12 +1,13 @@
 package ch.hsr.ogv.model;
 
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 
 import jakarta.xml.bind.annotation.XmlTransient;
 import jakarta.xml.bind.annotation.XmlType;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @XmlType(propOrder = {"uniqueID", "attributeValues"})
 public class ModelObject extends ModelBox {

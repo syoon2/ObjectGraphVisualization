@@ -1,10 +1,11 @@
 package ch.hsr.ogv.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javafx.geometry.Point2D;
 import javafx.geometry.Point3D;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class GeometryUtilTest {
 

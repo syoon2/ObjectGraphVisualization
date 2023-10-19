@@ -1,12 +1,13 @@
 package ch.hsr.ogv.view;
 
-import ch.hsr.ogv.model.RelationType;
-import ch.hsr.ogv.util.GeometryUtil;
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
+
+import ch.hsr.ogv.model.RelationType;
+import ch.hsr.ogv.util.GeometryUtil;
 
 public class ReflexiveArrow extends Arrow {
 

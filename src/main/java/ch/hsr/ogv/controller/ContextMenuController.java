@@ -1,12 +1,8 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.util.ResourceLocator;
-import ch.hsr.ogv.util.ResourceLocator.Resource;
-import ch.hsr.ogv.view.Arrow;
-import ch.hsr.ogv.view.PaneBox;
-import ch.hsr.ogv.view.Selectable;
-import ch.hsr.ogv.view.SubSceneAdapter;
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.event.ActionEvent;
 import javafx.geometry.Point3D;
 import javafx.scene.control.*;
@@ -16,8 +12,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.PickResult;
 import javafx.scene.shape.Box;
 
-import java.util.Observable;
-import java.util.Observer;
+import ch.hsr.ogv.model.*;
+import ch.hsr.ogv.util.ResourceLocator;
+import ch.hsr.ogv.util.ResourceLocator.Resource;
+import ch.hsr.ogv.view.Arrow;
+import ch.hsr.ogv.view.PaneBox;
+import ch.hsr.ogv.view.Selectable;
+import ch.hsr.ogv.view.SubSceneAdapter;
 
 public class ContextMenuController extends Observable implements Observer {
 

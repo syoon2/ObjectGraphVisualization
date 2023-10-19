@@ -1,14 +1,15 @@
 package ch.hsr.ogv.util;
 
-import ch.hsr.ogv.util.ResourceLocator.Resource;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
+import ch.hsr.ogv.util.ResourceLocator.Resource;
 
 public class MessageBar {
 

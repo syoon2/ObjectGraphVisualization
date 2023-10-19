@@ -1,15 +1,16 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.model.ModelBox;
-import ch.hsr.ogv.view.Floor;
-import ch.hsr.ogv.view.PaneBox;
-import ch.hsr.ogv.view.SubSceneAdapter;
 import javafx.geometry.Point3D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.PickResult;
+
+import ch.hsr.ogv.model.ModelBox;
+import ch.hsr.ogv.view.Floor;
+import ch.hsr.ogv.view.PaneBox;
+import ch.hsr.ogv.view.SubSceneAdapter;
 
 public class DragResizeController extends DragController {
 

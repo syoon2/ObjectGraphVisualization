@@ -1,10 +1,11 @@
 package ch.hsr.ogv.view;
 
-import ch.hsr.ogv.util.ColorUtil;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+
+import ch.hsr.ogv.util.ColorUtil;
 
 public class Axis extends Group {
 

@@ -1,5 +1,11 @@
 package ch.hsr.ogv.controller;
 
+import javafx.geometry.Point3D;
+import javafx.scene.Cursor;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.PickResult;
+
 import ch.hsr.ogv.model.ModelBox;
 import ch.hsr.ogv.model.ModelClass;
 import ch.hsr.ogv.model.ModelObject;
@@ -7,11 +13,6 @@ import ch.hsr.ogv.view.Floor;
 import ch.hsr.ogv.view.PaneBox;
 import ch.hsr.ogv.view.SubSceneAdapter;
 import ch.hsr.ogv.view.VerticalHelper;
-import javafx.geometry.Point3D;
-import javafx.scene.Cursor;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.PickResult;
 
 public class DragMoveController extends DragController {
 

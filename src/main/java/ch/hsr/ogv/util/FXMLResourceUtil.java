@@ -1,12 +1,14 @@
 package ch.hsr.ogv.util;
 
-import ch.hsr.ogv.util.ResourceLocator.Resource;
+import java.io.IOException;
+
 import javafx.fxml.FXMLLoader;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
+import ch.hsr.ogv.util.ResourceLocator.Resource;
 
 public class FXMLResourceUtil {
 

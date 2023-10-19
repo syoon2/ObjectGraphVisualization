@@ -1,10 +1,12 @@
 package ch.hsr.ogv.model;
 
-import ch.hsr.ogv.dataaccess.ColorAdapter;
+import java.util.Observable;
+
 import javafx.scene.paint.Color;
 
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.Observable;
+
+import ch.hsr.ogv.dataaccess.ColorAdapter;
 
 public class Relation extends Observable {
 

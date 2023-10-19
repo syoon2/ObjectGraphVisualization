@@ -1,14 +1,15 @@
 package ch.hsr.ogv.view;
 
-import ch.hsr.ogv.model.ModelClass;
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import ch.hsr.ogv.model.ModelClass;
 
 public class VerticalHelper extends Group {
 

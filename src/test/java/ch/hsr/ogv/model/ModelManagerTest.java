@@ -12,7 +12,7 @@ public class ModelManagerTest {
     private ModelManager mm;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         mm = new ModelManager();
     }
 

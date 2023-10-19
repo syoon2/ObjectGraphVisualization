@@ -14,7 +14,7 @@ public class EndpointTest {
     private Relation relationAB;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         modelClassA = new ModelClass("A", new Point3D(0, 0, 0), 100.0, 100.0, Color.BEIGE);
         modelClassB = new ModelClass("B", new Point3D(-200, 0, 0), 100.0, 100.0, Color.BEIGE);
         relationAB = new Relation(modelClassA, modelClassB, RelationType.DIRECTED_ASSOCIATION);

@@ -15,7 +15,7 @@ public class ModelObjectTest {
     private ModelObject modelObjectA1;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         ModelManager mm = new ModelManager();
         modelClassA = mm.createClass(new Point3D(-200, 200, 0), 100, 100, Color.BEIGE);
         modelObjectA1 = mm.createObject(modelClassA);

@@ -1,11 +1,12 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.view.*;
+import java.util.*;
+
 import javafx.geometry.Point3D;
 import javafx.scene.Node;
 
-import java.util.*;
+import ch.hsr.ogv.model.*;
+import ch.hsr.ogv.view.*;
 
 public class RelationCreationController extends Observable implements Observer {
 

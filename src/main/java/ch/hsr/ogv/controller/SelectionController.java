@@ -1,6 +1,9 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.view.*;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.geometry.Point3D;
 import javafx.scene.SubScene;
 import javafx.scene.control.Label;
@@ -8,9 +11,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Box;
 
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import ch.hsr.ogv.view.*;
 
 public class SelectionController extends Observable implements Observer {
 

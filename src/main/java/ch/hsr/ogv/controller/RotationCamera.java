@@ -1,12 +1,13 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.view.SubSceneAdapter;
-import ch.hsr.ogv.view.SubSceneCamera;
-import ch.hsr.ogv.view.Xform;
 import javafx.scene.SubScene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+
+import ch.hsr.ogv.view.SubSceneAdapter;
+import ch.hsr.ogv.view.SubSceneCamera;
+import ch.hsr.ogv.view.Xform;
 
 public class RotationCamera extends CameraBase {
 

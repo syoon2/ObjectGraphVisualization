@@ -1,5 +1,10 @@
 package ch.hsr.ogv.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.geometry.Point3D;
+
 import ch.hsr.ogv.model.*;
 import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.util.MultiplicityParser;
@@ -7,10 +12,6 @@ import ch.hsr.ogv.view.Arrow;
 import ch.hsr.ogv.view.ConnectorBox;
 import ch.hsr.ogv.view.PaneBox;
 import ch.hsr.ogv.view.SubSceneAdapter;
-import javafx.geometry.Point3D;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ObjectGraph {
 

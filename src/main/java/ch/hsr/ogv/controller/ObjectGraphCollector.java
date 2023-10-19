@@ -1,13 +1,13 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.util.MultiplicityParser;
-import ch.hsr.ogv.util.TextUtil;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import ch.hsr.ogv.model.*;
+import ch.hsr.ogv.util.MultiplicityParser;
+import ch.hsr.ogv.util.TextUtil;
 
 public class ObjectGraphCollector {
 

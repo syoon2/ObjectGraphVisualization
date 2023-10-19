@@ -1,12 +1,8 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.util.MessageBar;
-import ch.hsr.ogv.util.MessageBar.MessageLevel;
-import ch.hsr.ogv.util.MultiplicityParser;
-import ch.hsr.ogv.view.Arrow;
-import ch.hsr.ogv.view.ArrowLabel;
-import ch.hsr.ogv.view.PaneBox;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -14,11 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
+import ch.hsr.ogv.model.*;
+import ch.hsr.ogv.util.MessageBar;
+import ch.hsr.ogv.util.MessageBar.MessageLevel;
+import ch.hsr.ogv.util.MultiplicityParser;
+import ch.hsr.ogv.view.Arrow;
+import ch.hsr.ogv.view.ArrowLabel;
+import ch.hsr.ogv.view.PaneBox;
 
 public class TextFieldController {
 

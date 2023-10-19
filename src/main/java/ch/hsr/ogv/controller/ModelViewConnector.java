@@ -1,14 +1,14 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.util.TextUtil;
-import ch.hsr.ogv.view.*;
+import java.util.*;
+
 import javafx.geometry.Point3D;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
-import java.util.*;
-import java.util.Map.Entry;
+import ch.hsr.ogv.model.*;
+import ch.hsr.ogv.util.TextUtil;
+import ch.hsr.ogv.view.*;
 
 public class ModelViewConnector {
 
@@ -36,7 +36,7 @@ public class ModelViewConnector {
     }
 
     public ModelBox getModelBox(PaneBox value) {
-        for (Entry<ModelBox, PaneBox> entry : boxes.entrySet()) {
+        for (Map.Entry<ModelBox, PaneBox> entry : boxes.entrySet()) {
             if (entry.getValue().equals(value)) {
                 return entry.getKey();
             }
@@ -69,7 +69,7 @@ public class ModelViewConnector {
     }
 
     public Relation getRelation(Arrow value) {
-        for (Entry<Relation, Arrow> entry : arrows.entrySet()) {
+        for (Map.Entry<Relation, Arrow> entry : arrows.entrySet()) {
             if (entry.getValue().equals(value)) {
                 return entry.getKey();
             }

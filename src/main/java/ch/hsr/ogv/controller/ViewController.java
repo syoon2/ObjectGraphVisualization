@@ -1,11 +1,12 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.dataaccess.*;
-import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.util.ColorUtil;
-import ch.hsr.ogv.util.MessageBar;
-import ch.hsr.ogv.util.MessageBar.MessageLevel;
-import ch.hsr.ogv.view.*;
+import java.io.File;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.ResourceBundle;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,12 +21,12 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.ResourceBundle;
+import ch.hsr.ogv.dataaccess.*;
+import ch.hsr.ogv.model.*;
+import ch.hsr.ogv.util.ColorUtil;
+import ch.hsr.ogv.util.MessageBar;
+import ch.hsr.ogv.util.MessageBar.MessageLevel;
+import ch.hsr.ogv.view.*;
 
 public class ViewController implements Observer, Initializable {
 

@@ -1,13 +1,14 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.view.Floor;
-import ch.hsr.ogv.view.PaneBox;
-import ch.hsr.ogv.view.VerticalHelper;
+import java.util.Observable;
+
 import javafx.geometry.Point3D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.PickResult;
 
-import java.util.Observable;
+import ch.hsr.ogv.view.Floor;
+import ch.hsr.ogv.view.PaneBox;
+import ch.hsr.ogv.view.VerticalHelper;
 
 public class MouseMoveController extends Observable {
 

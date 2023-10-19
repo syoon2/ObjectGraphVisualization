@@ -1,10 +1,5 @@
 package ch.hsr.ogv.controller;
 
-import ch.hsr.ogv.model.Attribute;
-import ch.hsr.ogv.model.ModelBox;
-import ch.hsr.ogv.model.ModelClass;
-import ch.hsr.ogv.model.ModelObject;
-import ch.hsr.ogv.view.PaneBox;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -12,6 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
+import ch.hsr.ogv.model.Attribute;
+import ch.hsr.ogv.model.ModelBox;
+import ch.hsr.ogv.model.ModelClass;
+import ch.hsr.ogv.model.ModelObject;
+import ch.hsr.ogv.view.PaneBox;
 
 public class QuickCreationController {
 

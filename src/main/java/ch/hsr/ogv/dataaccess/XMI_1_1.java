@@ -275,7 +275,7 @@ public class XMI_1_1 extends XMIHandler {
         while (m.find()) {
             left = m.group(2);
         }
-        if (!left.equals("")) {
+        if (!left.isEmpty()) {
             d = new Double(left).doubleValue();
         }
         else {
@@ -285,7 +285,7 @@ public class XMI_1_1 extends XMIHandler {
             while (m.find()) {
                 left = m.group(1);
             }
-            if (!left.equals("")) {
+            if (!left.isEmpty()) {
                 d = new Double(left).doubleValue();
                 if (d > 500) {
                     scaling = true;
@@ -314,7 +314,7 @@ public class XMI_1_1 extends XMIHandler {
         while (m.find()) {
             top = m.group(2);
         }
-        if (!top.equals("")) {
+        if (!top.isEmpty()) {
             d = new Double(top).doubleValue();
         }
         else {
@@ -324,7 +324,7 @@ public class XMI_1_1 extends XMIHandler {
             while (m.find()) {
                 top = m.group(2);
             }
-            if (!top.equals("")) {
+            if (!top.isEmpty()) {
                 d = new Double(top).doubleValue();
                 if (d > 500) {
                     scaling = true;

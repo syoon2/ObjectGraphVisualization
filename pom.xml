@@ -24,7 +24,7 @@
         <version.jaxb-api>2.3.1</version.jaxb-api>
         <version.jaxb-core>2.3.0.1</version.jaxb-core>
         <version.jaxb-runtime>2.3.1</version.jaxb-runtime>
-        <version.openjfx>11</version.openjfx>
+        <version.openjfx>11.0.2</version.openjfx>
         <version.fxyzlib>0.3.0-patched</version.fxyzlib>
         <version.objimporterjfx>0.8</version.objimporterjfx>
         <version.junit5>5.10.0</version.junit5>

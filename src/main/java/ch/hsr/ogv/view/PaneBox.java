@@ -17,14 +17,15 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
 public class PaneBox implements Selectable {
 
-    private final static Logger logger = LoggerFactory.getLogger(PaneBox.class);
+    private final static Logger logger = LogManager.getLogger(PaneBox.class);
 
     public final static int CLASSBOX_DEPTH = 10;
     public final static int OBJECTBOX_DEPTH = 20;
@@ -228,7 +229,7 @@ public class PaneBox implements Selectable {
                 GridPane.setRowIndex(labelOrField, rowIndex);
             }
             catch (IndexOutOfBoundsException ioobe) {
-                logger.debug("Swapping center field failed. IndexOutOfBoundsException: " + ioobe.getMessage());
+                logger.debug("Swapping center field failed.", ioobe);
             }
         }
     }
@@ -301,7 +302,7 @@ public class PaneBox implements Selectable {
             }
         }
         catch (IndexOutOfBoundsException ioobe) {
-            logger.debug("Allowing textinput failed for center field. IndexOutOfBoundsException: " + ioobe.getMessage());
+            logger.debug("Allowing textinput failed for center field.", ioobe);
         }
     }
 

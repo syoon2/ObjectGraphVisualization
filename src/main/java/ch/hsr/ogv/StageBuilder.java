@@ -14,8 +14,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -24,7 +26,7 @@ import java.io.IOException;
  */
 public class StageBuilder {
 
-    private final static Logger logger = LoggerFactory.getLogger(StageBuilder.class);
+    private final static Logger logger = LogManager.getLogger(StageBuilder.class);
 
     private static final int MIN_WIDTH = 1024;
     private static final int MIN_HEIGHT = 768;
@@ -104,8 +106,7 @@ public class StageBuilder {
             this.rootLayout = (BorderPane) loader.load();
         }
         catch (IOException | ClassCastException e) {
-            logger.debug(e.getMessage());
-            e.printStackTrace();
+            logger.debug(Level.DEBUG, e);
         }
     }
 

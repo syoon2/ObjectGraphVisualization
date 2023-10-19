@@ -5,8 +5,9 @@ import ch.hsr.ogv.util.ResourceLocator.Resource;
 import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Locale;
@@ -16,11 +17,10 @@ import java.util.Locale;
  */
 public class MainApp extends Application {
 
-    private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
+    private final static Logger logger = LogManager.getLogger(MainApp.class);
 
     private final static UncaughtExceptionHandler ueHandler = (thread, throwable) -> {
-        logger.debug("Error in thread " + thread + ": " + throwable.getMessage());
-        throwable.printStackTrace();
+        logger.catching(Level.DEBUG ,throwable);
     };
 
     public static void main(String[] args) {

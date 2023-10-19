@@ -3,14 +3,15 @@ package ch.hsr.ogv.util;
 import com.interactivemesh.jfx.importer.ImportException;
 import com.interactivemesh.jfx.importer.obj.ObjModelImporter;
 import javafx.scene.Node;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 
 public class ObjModelLoader {
 
-    private final static Logger logger = LoggerFactory.getLogger(ObjModelLoader.class);
+    private final static Logger logger = LogManager.getLogger(ObjModelLoader.class);
 
     public static Node[] load(URL modelUrl) {
         Node[] rootNodes = {};
@@ -20,8 +21,7 @@ public class ObjModelLoader {
                 tdsImporter.read(modelUrl);
             }
             catch (ImportException e) {
-                e.printStackTrace();
-                logger.debug(e.getMessage());
+                logger.catching(Level.DEBUG, e);
             }
             return tdsImporter.getImport();
         }

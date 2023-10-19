@@ -2,8 +2,9 @@ package ch.hsr.ogv.dataaccess;
 
 import ch.hsr.ogv.model.ModelClass;
 import ch.hsr.ogv.model.Relation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -21,7 +22,7 @@ import java.util.Set;
 @XmlType(propOrder = {"classes", "relations"})
 public class OGVSerialization implements SerializationStrategy {
 
-    private final static Logger logger = LoggerFactory.getLogger(OGVSerialization.class);
+    private final static Logger logger = LogManager.getLogger(OGVSerialization.class);
 
     private Set<ModelClass> classes = new LinkedHashSet<ModelClass>();
     private Set<Relation> relations = new LinkedHashSet<Relation>();
@@ -63,8 +64,7 @@ public class OGVSerialization implements SerializationStrategy {
             return true;
         }
         catch (JAXBException e) {
-            e.printStackTrace();
-            logger.debug(e.getMessage());
+            logger.catching(Level.DEBUG, e);
         }
         return false;
     }
@@ -79,8 +79,7 @@ public class OGVSerialization implements SerializationStrategy {
             return true;
         }
         catch (JAXBException e) {
-            e.printStackTrace();
-            logger.debug(e.getMessage());
+            logger.catching(Level.DEBUG, e);
         }
         return false;
     }

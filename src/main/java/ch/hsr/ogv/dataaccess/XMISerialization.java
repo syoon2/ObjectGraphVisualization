@@ -4,8 +4,9 @@ import ch.hsr.ogv.model.ModelClass;
 import ch.hsr.ogv.model.Relation;
 import ch.hsr.ogv.util.MessageBar;
 import ch.hsr.ogv.util.MessageBar.MessageLevel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,7 +28,7 @@ import java.util.Set;
  */
 public class XMISerialization implements SerializationStrategy {
 
-    private final static Logger logger = LoggerFactory.getLogger(SerializationStrategy.class);
+    private final static Logger logger = LogManager.getLogger(SerializationStrategy.class);
 
     private static final String[] SUPPORTED_VERSIONS = {"1.1"};
 
@@ -64,7 +65,7 @@ public class XMISerialization implements SerializationStrategy {
             return parseXMI(file);
         }
         catch (SAXException | IOException | ParserConfigurationException e) {
-            logger.debug(e.getMessage());
+            logger.catching(Level.DEBUG, e);
             MessageBar.setText("Unable to read XMI file: \"" + file.getPath() + "\".", MessageLevel.ALERT);
         }
         return false;
@@ -77,7 +78,7 @@ public class XMISerialization implements SerializationStrategy {
             mParser.parse(xmiFile, mVersionHandler);
         }
         catch (org.xml.sax.SAXParseException e) {
-            logger.debug(e.getMessage());
+            logger.catching(Level.DEBUG, e);
         }
         String version = mVersionHandler.getVersion();
         ArrayList<String> supportedVersions = new ArrayList<String>(Arrays.asList(SUPPORTED_VERSIONS));
@@ -92,7 +93,7 @@ public class XMISerialization implements SerializationStrategy {
                 return true;
             }
             catch (org.xml.sax.SAXParseException e) {
-                logger.debug(e.getMessage());
+                logger.catching(Level.DEBUG, e);
                 MessageBar.setText("Unable to read XMI file: \"" + xmiFile.getPath() + "\".", MessageLevel.ALERT);
             }
         }

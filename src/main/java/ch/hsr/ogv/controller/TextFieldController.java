@@ -14,15 +14,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class TextFieldController {
 
-    private final static Logger logger = LoggerFactory.getLogger(TextFieldController.class);
+    private final static Logger logger = LogManager.getLogger(TextFieldController.class);
 
     private final Pattern SPECIAL_REGEX_CHARS = Pattern.compile("[{}()\\[\\].+*?^$\\\\|]");
 
@@ -161,7 +161,7 @@ public class TextFieldController {
                                 }
                             }
                             catch (IndexOutOfBoundsException ioobe) {
-                                logger.debug("Changing attribute failed. IndexOutOfBoundsException: " + ioobe.getMessage());
+                                logger.debug("Changing attribute failed.", ioobe);
                             }
                         }
                     }
@@ -198,7 +198,7 @@ public class TextFieldController {
                         }
                     }
                     catch (IndexOutOfBoundsException ioobe) {
-                        logger.debug("Changing attribute value failed. IndexOutOfBoundsException: " + ioobe.getMessage());
+                        logger.debug("Changing attribute value failed.", ioobe);
                     }
                 }
             });

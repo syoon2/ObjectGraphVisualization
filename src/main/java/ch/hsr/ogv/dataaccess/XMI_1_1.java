@@ -276,7 +276,7 @@ public class XMI_1_1 extends XMIHandler {
             left = m.group(2);
         }
         if (!left.isEmpty()) {
-            d = new Double(left).doubleValue();
+            d = Double.valueOf(left);
         }
         else {
             regExp = "(\\d*)\\,(\\d*)\\,(\\d*)\\,(\\d*)"; // Example 2
@@ -286,7 +286,7 @@ public class XMI_1_1 extends XMIHandler {
                 left = m.group(1);
             }
             if (!left.isEmpty()) {
-                d = new Double(left).doubleValue();
+                d = Double.valueOf(left);
                 if (d > 500) {
                     scaling = true;
                 }
@@ -315,7 +315,7 @@ public class XMI_1_1 extends XMIHandler {
             top = m.group(2);
         }
         if (!top.isEmpty()) {
-            d = new Double(top).doubleValue();
+            d = Double.valueOf(top);
         }
         else {
             regExp = "(\\d*)\\,(\\d*)\\,(\\d*)\\,(\\d*)";
@@ -325,7 +325,7 @@ public class XMI_1_1 extends XMIHandler {
                 top = m.group(2);
             }
             if (!top.isEmpty()) {
-                d = new Double(top).doubleValue();
+                d = Double.valueOf(top);
                 if (d > 500) {
                     scaling = true;
                 }

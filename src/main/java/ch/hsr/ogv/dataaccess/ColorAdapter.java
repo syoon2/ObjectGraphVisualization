@@ -3,7 +3,7 @@ package ch.hsr.ogv.dataaccess;
 import ch.hsr.ogv.util.ColorUtil;
 import javafx.scene.paint.Color;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 public class ColorAdapter extends XmlAdapter<String, Color> {
 

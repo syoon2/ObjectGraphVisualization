@@ -3,7 +3,7 @@ package ch.hsr.ogv.model;
 import ch.hsr.ogv.dataaccess.ColorAdapter;
 import javafx.scene.paint.Color;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Observable;
 
 public class Relation extends Observable {

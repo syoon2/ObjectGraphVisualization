@@ -252,14 +252,14 @@
             <artifactId>fxyzlib</artifactId>
             <version>${version.fxyzlib}</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/fxyzlib-0.3.0-patched.jar</systemPath>
+            <systemPath>${pom.basedir}/lib/fxyzlib-0.3.0-patched.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.interactivemesh</groupId>
             <artifactId>objmodelimporterjfx</artifactId>
             <version>${version.objimporterjfx}</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/objmodelimporterjfx-0.8.jar</systemPath>
+            <systemPath>${pom.basedir}/lib/objmodelimporterjfx-0.8.jar</systemPath>
         </dependency>
 
         <!-- Testing -->

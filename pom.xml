@@ -110,7 +110,7 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>${artifactId}-${version}-runnable</finalName>
+                    <finalName>${project.artifactId}-${project.version}-runnable</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>

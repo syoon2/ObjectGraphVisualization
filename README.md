@@ -32,7 +32,7 @@ Developer Addendum: It shouldn't be too difficult to add an API for remote appli
 
 [Object Graph Visualizer Version 3.1](https://github.com/Nurtak/ObjectGraphVisualization/releases)
 
-The Java Runnable requires [Java 8u45]( https://www.java.com/de/download/).
+The Java Runnable requires [Java 11](https://adoptium.net/temurin/releases/?version=11).
 The Windows Installer and Standalone come prepacked with the runtime.
 More information and installation can be found in the [Instruction Manual](https://github.com/Nurtak/ObjectGraphVisualization/releases/download/v3.1/Instruction.Manual.pdf).
 

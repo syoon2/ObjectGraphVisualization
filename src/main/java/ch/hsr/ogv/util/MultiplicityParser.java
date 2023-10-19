@@ -36,7 +36,7 @@ public class MultiplicityParser {
         }
         BigInteger parsedBigInt = toBigInteger(multiString);
         if (parsedBigInt != null) {
-            return bigIntPositive(parsedBigInt) && !parsedBigInt.equals(new BigInteger("0"));
+            return bigIntPositive(parsedBigInt) && !parsedBigInt.equals(BigInteger.ZERO);
         }
         return false;
     }
@@ -64,10 +64,10 @@ public class MultiplicityParser {
                 if (secondPartStar && firstPartBigInt != null) {
                     return true;
                 }
-                if (firstPartBigInt != null && !bigIntPositive(firstPartBigInt) && !firstPartBigInt.equals(new BigInteger("0"))) {
+                if (firstPartBigInt != null && !bigIntPositive(firstPartBigInt) && !firstPartBigInt.equals(BigInteger.ZERO)) {
                     return false;
                 }
-                if (secondPartBigInt != null && !bigIntPositive(secondPartBigInt) && secondPartBigInt.equals(new BigInteger("0"))) {
+                if (secondPartBigInt != null && !bigIntPositive(secondPartBigInt) && secondPartBigInt.equals(BigInteger.ZERO)) {
                     return false;
                 }
                 if (firstPartBigInt != null && secondPartBigInt != null && firstPartBigInt.compareTo(secondPartBigInt) < 0) {
@@ -166,7 +166,7 @@ public class MultiplicityParser {
         }
         List<String> separations = new ArrayList<String>(Arrays.asList(multiString.split("\\.\\.|,")));
         String retString = null;
-        BigInteger currentBiggest = new BigInteger("0");
+        BigInteger currentBiggest = BigInteger.ZERO;
         for (String part : separations) {
             if (isAsterisk(part)) {
                 return ASTERISK;
@@ -175,7 +175,7 @@ public class MultiplicityParser {
                 currentBiggest = toBigInteger(part);
             }
         }
-        if (!currentBiggest.equals(new BigInteger("0"))) {
+        if (!currentBiggest.equals(BigInteger.ZERO)) {
             retString = currentBiggest.toString();
         }
         return retString;

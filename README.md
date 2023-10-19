@@ -1,6 +1,8 @@
 # Object Graph Visualizer v.3.1
 
-![alt tag](src/main/resources/images/OGV.png?raw=true)
+![alt tag](src/main/resources/images/OGV.png?raw=true)  
+[![CI](https://github.com/syoon2/ObjectGraphVisualization/actions/workflows/ci.yml/badge.svg)](https://github.com/syoon2/ObjectGraphVisualization/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## Description
 

@@ -1,7 +1,12 @@
 package ch.hsr.ogv.controller;
 
+import static ch.hsr.ogv.MainApp.gitProperties;
+
 import java.io.File;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
@@ -21,6 +26,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import ch.hsr.ogv.MainApp;
 import ch.hsr.ogv.dataaccess.*;
 import ch.hsr.ogv.model.*;
 import ch.hsr.ogv.util.ColorUtil;
@@ -199,13 +205,18 @@ public class ViewController implements Observer, Initializable {
     @FXML
     private void handleAbout() {
         Alert alert = new Alert(AlertType.INFORMATION);
+        Date buildTime;
+        try {
+            buildTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(gitProperties.getProperty("git.build.time"));
+        } catch (ParseException pe) {
+            buildTime = null;
+        }
         alert.setTitle("About");
         alert.setHeaderText("Object Graph Visualizer");
-        alert.setContentText("Version:\t3.1"
-                             + "\nAuthors:\tSimon Gwerder, Adrian Rieser"
-                             + "\nRelease:\t12.06.2015\n"
-                             + "\nBachelor Thesis"
-                             + "\nHSR University of Applied Sciences Rapperswil");
+        alert.setContentText("Version:\t\t" + gitProperties.getProperty("git.build.version")
+                             + "\nCommit:\t\t" + gitProperties.getProperty("git.commit.id.abbrev")
+                             + buildTime != null ? ("\nBuild time:\t" + buildTime.toString()) : ""
+                             + "\n\nDistributed under the MIT License.");
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image("file:resources/images/OGV.gif")); // add a custom icon
         alert.initOwner(this.primaryStage);

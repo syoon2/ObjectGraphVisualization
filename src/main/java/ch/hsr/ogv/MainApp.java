@@ -1,7 +1,11 @@
 package ch.hsr.ogv;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Locale;
+import java.util.Properties;
 
 import javafx.application.Application;
 import javafx.scene.text.Font;
@@ -18,6 +22,16 @@ import ch.hsr.ogv.util.ResourceLocator.Resource;
  * Starts the FX application.
  */
 public class MainApp extends Application {
+
+    public static final Properties gitProperties;
+    static {
+        gitProperties = new Properties();
+        try (InputStream inputStream = MainApp.class.getClassLoader().getResourceAsStream("git.properties")) {
+            gitProperties.load(inputStream);
+        } catch (IOException ioe) {
+            throw new UncheckedIOException(ioe);
+        }
+    } 
 
     private final static Logger logger = LogManager.getLogger(MainApp.class);
 

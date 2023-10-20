@@ -1,6 +1,7 @@
 package ch.hsr.ogv.model;
 
-import java.util.Observable;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import javafx.scene.paint.Color;
 
@@ -8,13 +9,15 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import ch.hsr.ogv.dataaccess.ColorAdapter;
 
-public class Relation extends Observable {
+public class Relation {
 
     private String name = "";
     private Endpoint start;
     private Endpoint end;
     private RelationType relationType = RelationType.UNDIRECTED_ASSOCIATION;
     private Color color = Color.BLACK;
+
+    private transient PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     // for un/marshaling only
     public Relation() {
@@ -73,9 +76,9 @@ public class Relation extends Observable {
     }
 
     public void setColor(Color color) {
+        Color oldColor = this.color;
         this.color = color;
-        setChanged();
-        notifyObservers(RelationChange.COLOR);
+        support.firePropertyChange("color", oldColor, this.color);
     }
 
     public Endpoint getFriend(Endpoint endpoint) {
@@ -114,43 +117,44 @@ public class Relation extends Observable {
         ModelBox tempModelBox = this.end.getAppendant();
         this.end.setAppendant(this.start.getAppendant());
         this.start.setAppendant(tempModelBox);
-        setChanged();
-        notifyObservers(RelationChange.DIRECTION);
+        support.firePropertyChange("direction", null, null);
     }
 
     public void setStartMultiplicity(String multiplicity) {
         if (this.start == null)
             return;
+        String oldMultiplicity = this.start.getMultiplicity();
         this.start.setMultiplicity(multiplicity);
-        setChanged();
-        notifyObservers(RelationChange.MULTIPLCITY_ROLE);
+        support.firePropertyChange("multiplicity_role", oldMultiplicity, multiplicity);
     }
 
     public void setEndMultiplicity(String multiplicity) {
         if (this.end == null)
             return;
+        String oldMultiplicity = this.end.getMultiplicity();
         this.end.setMultiplicity(multiplicity);
-        setChanged();
-        notifyObservers(RelationChange.MULTIPLCITY_ROLE);
+        support.firePropertyChange("multiplicity_role", oldMultiplicity, multiplicity);
     }
 
     public void setStartRoleName(String roleName) {
         if (this.start == null)
             return;
+        
+        String oldRoleName = this.start.getRoleName();
         this.start.setRoleName(roleName);
-        setChanged();
-        notifyObservers(RelationChange.MULTIPLCITY_ROLE);
+        support.firePropertyChange("multiplicity_role", oldRoleName, roleName);
     }
 
     public void setEndRoleName(String roleName) {
         if (this.end == null)
             return;
+        String oldRoleName = this.end.getRoleName();
         this.end.setRoleName(roleName);
-        setChanged();
-        notifyObservers(RelationChange.MULTIPLCITY_ROLE);
+        support.firePropertyChange("multiplicity_role", oldRoleName, roleName);
     }
 
-    public enum RelationChange {
-        COLOR, DIRECTION, MULTIPLCITY_ROLE;
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
     }
+
 }

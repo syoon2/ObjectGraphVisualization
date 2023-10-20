@@ -9,7 +9,6 @@ import javafx.scene.layout.BorderPane;
 
 import ch.hsr.ogv.model.*;
 import ch.hsr.ogv.model.ModelBox.ModelBoxChange;
-import ch.hsr.ogv.model.Relation.RelationChange;
 import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.view.*;
 
@@ -135,7 +134,23 @@ public class ModelController implements Observer {
      * @param relation
      */
     private void showArrowInView(Relation relation) {
-        relation.addObserver(this);
+        relation.addPropertyChangeListener(evt -> {
+            String changedProperty = evt.getPropertyName();
+            switch (changedProperty) {
+                case "color":
+                    adaptArrowColor(relation);
+                    break;
+                case "direction":
+                    adaptArrowDirection(relation);
+                    break;
+                case "multiplicity_role":
+                    adaptArrowLabel(relation);
+                    break;
+                default:
+                    break;
+            }
+            this.rootLayout.applyCss();
+        });
         ModelBox startModelBox = relation.getStart().getAppendant();
         ModelBox endModelBox = relation.getEnd().getAppendant();
         PaneBox startViewBox = this.mvConnector.getPaneBox(startModelBox);
@@ -607,23 +622,6 @@ public class ModelController implements Observer {
                 case WIDTH:
                     adaptBoxWidth(modelBox);
                     adaptArrowToBox(modelBox);
-                    break;
-                default:
-                    break;
-            }
-        }
-        else if (o instanceof Relation && arg instanceof RelationChange) {
-            Relation relation = (Relation) o;
-            RelationChange relationChange = (RelationChange) arg;
-            switch (relationChange) {
-                case COLOR:
-                    adaptArrowColor(relation);
-                    break;
-                case DIRECTION:
-                    adaptArrowDirection(relation);
-                    break;
-                case MULTIPLCITY_ROLE:
-                    adaptArrowLabel(relation);
                     break;
                 default:
                     break;

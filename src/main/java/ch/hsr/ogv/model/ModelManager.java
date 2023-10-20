@@ -1,5 +1,7 @@
 package ch.hsr.ogv.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.*;
 
 import javafx.geometry.Point3D;
@@ -8,10 +10,12 @@ import javafx.scene.paint.Color;
 import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.util.TextUtil;
 
-public class ModelManager extends Observable {
+public class ModelManager {
 
     private Set<ModelClass> classes = new LinkedHashSet<ModelClass>();
     private Set<Relation> relations = new LinkedHashSet<Relation>();
+
+    private transient PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public Set<ModelClass> getClasses() {
         return this.classes;
@@ -40,8 +44,7 @@ public class ModelManager extends Observable {
         }
         ModelClass modelClass = new ModelClass(newClassName, coordinates, width, heigth, color);
         this.classes.add(modelClass);
-        setChanged();
-        notifyObservers(modelClass);
+        support.firePropertyChange("class", null, modelClass);
         return modelClass;
     }
 
@@ -58,8 +61,7 @@ public class ModelManager extends Observable {
 
         buildGeneralizationObjects(modelClass);
 
-        setChanged();
-        notifyObservers(modelObject);
+        support.firePropertyChange("object", null, modelObject);
         return modelObject;
     }
 
@@ -91,8 +93,7 @@ public class ModelManager extends Observable {
             superObject.addAttributeValue(attribute, "");
         }
         subObject.addSuperObject(superObject);
-        setChanged();
-        notifyObservers(superObject);
+        support.firePropertyChange("object", null, superObject);
         return superObject;
     }
 
@@ -107,8 +108,7 @@ public class ModelManager extends Observable {
                 buildGeneralizationObjects((ModelClass) start);
             }
 
-            setChanged();
-            notifyObservers(relation);
+            support.firePropertyChange("relation", null, relation);
             return relation;
         }
         return null;
@@ -144,8 +144,7 @@ public class ModelManager extends Observable {
 
         boolean deletedClass = classes.remove(modelClass);
         if (deletedClass) {
-            setChanged();
-            notifyObservers(modelClass);
+            support.firePropertyChange("class", modelClass, null);
         }
         return deletedClass;
     }
@@ -157,8 +156,7 @@ public class ModelManager extends Observable {
         }
         boolean deletedObject = subClass.deleteSuperObject(superObject);
         if (deletedObject) {
-            setChanged();
-            notifyObservers(superObject);
+            support.firePropertyChange("object", superObject, null);
             subClass.setCoordinates(subClass.getCoordinates()); // triggers repositioning
         }
         return deletedObject;
@@ -176,8 +174,7 @@ public class ModelManager extends Observable {
 
         boolean deletedObject = modelObject.getModelClass().deleteModelObject(modelObject);
         if (deletedObject) {
-            setChanged();
-            notifyObservers(modelObject);
+            support.firePropertyChange("object", modelObject, null);
         }
         return deletedObject;
     }
@@ -274,8 +271,7 @@ public class ModelManager extends Observable {
                 cleanupGeneralizationObjects(relation, superClasses);
             }
 
-            setChanged();
-            notifyObservers(relation);
+            support.firePropertyChange("relation", relation, null);
         }
 
         return deletedRelation;
@@ -353,6 +349,10 @@ public class ModelManager extends Observable {
             }
         }
         return relationList;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
     }
 
 }

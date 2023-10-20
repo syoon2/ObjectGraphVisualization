@@ -1,8 +1,7 @@
 package ch.hsr.ogv.controller;
 
 import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Objects;
 
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -11,7 +10,7 @@ import ch.hsr.ogv.model.*;
 import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.view.*;
 
-public class ModelController implements Observer {
+public class ModelController {
 
     private BorderPane rootLayout;
     private SubSceneAdapter subSceneAdapter;
@@ -41,7 +40,50 @@ public class ModelController implements Observer {
      */
     public void setMVConnector(ModelViewConnector mvConnector) {
         this.mvConnector = mvConnector;
-        this.mvConnector.getModelManager().addObserver(this);
+        this.mvConnector.getModelManager().addPropertyChangeListener(evt -> {
+            if (evt.getPropertyName().equals("class")) {
+                ModelClass modelClass = (ModelClass) Objects.requireNonNullElse(evt.getOldValue(), evt.getNewValue());
+                if (!this.mvConnector.containsModelBox(modelClass)) { // class is new
+                    showModelClassInView(modelClass);
+                    adaptBoxSettings(modelClass);
+                    adaptArrowToBox(modelClass);
+                }
+                else {
+                    PaneBox toDelete = this.mvConnector.removeBoxes(modelClass);
+                    removeFromView(toDelete.get());
+                    removeFromView(toDelete.getSelection());
+                }
+            }
+            else if (evt.getPropertyName().equals("object")) {
+                ModelObject modelObject = (ModelObject) Objects.requireNonNullElse(evt.getOldValue(), evt.getNewValue());
+                if (!this.mvConnector.containsModelBox(modelObject)) { // object is new
+                    showModelObjectInView(modelObject);
+                    adaptBoxSettings(modelObject);
+                    adaptArrowToBox(modelObject);
+                }
+                else {
+                    PaneBox toDelete = this.mvConnector.removeBoxes(modelObject);
+                    removeFromView(toDelete.get());
+                    removeFromView(toDelete.getSelection());
+                }
+            }
+            else if (evt.getPropertyName().equals("relation")) {
+                Relation relation = (Relation) Objects.requireNonNullElse(evt.getOldValue(), evt.getNewValue());
+                if (!this.mvConnector.containsRelation(relation)) { // relation is new
+                    showArrowInView(relation);
+                    adaptArrowColor(relation);
+                }
+                else {
+                    ModelBox startModelBox = relation.getStart().getAppendant();
+                    ModelBox endModelBox = relation.getEnd().getAppendant();
+                    Arrow toDelete = this.mvConnector.removeArrows(relation);
+                    this.mvConnector.arrangeArrowNumbers(startModelBox, endModelBox);
+                    removeFromView(toDelete);
+                    removeFromView(toDelete.getSelection());
+                }
+            }
+            this.rootLayout.applyCss();
+        });
     }
 
     public void setSelectionController(SelectionController selectionController) {
@@ -605,52 +647,6 @@ public class ModelController implements Observer {
             this.textFieldController.enableCenterTextInput(modelObject, changedBox, this.mvConnector);
             this.contextMenuController.enableCenterFieldContextMenu(modelObject, changedBox, this.subSceneAdapter);
         }
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof ModelManager && arg instanceof ModelClass) {
-            ModelClass modelClass = (ModelClass) arg;
-            if (!this.mvConnector.containsModelBox(modelClass)) { // class is new
-                showModelClassInView(modelClass);
-                adaptBoxSettings(modelClass);
-                adaptArrowToBox(modelClass);
-            }
-            else {
-                PaneBox toDelete = this.mvConnector.removeBoxes(modelClass);
-                removeFromView(toDelete.get());
-                removeFromView(toDelete.getSelection());
-            }
-        }
-        else if (o instanceof ModelManager && arg instanceof ModelObject) {
-            ModelObject modelObject = (ModelObject) arg;
-            if (!this.mvConnector.containsModelBox(modelObject)) { // object is new
-                showModelObjectInView(modelObject);
-                adaptBoxSettings(modelObject);
-                adaptArrowToBox(modelObject);
-            }
-            else {
-                PaneBox toDelete = this.mvConnector.removeBoxes(modelObject);
-                removeFromView(toDelete.get());
-                removeFromView(toDelete.getSelection());
-            }
-        }
-        else if (o instanceof ModelManager && arg instanceof Relation) {
-            Relation relation = (Relation) arg;
-            if (!this.mvConnector.containsRelation(relation)) { // relation is new
-                showArrowInView(relation);
-                adaptArrowColor(relation);
-            }
-            else {
-                ModelBox startModelBox = relation.getStart().getAppendant();
-                ModelBox endModelBox = relation.getEnd().getAppendant();
-                Arrow toDelete = this.mvConnector.removeArrows(relation);
-                this.mvConnector.arrangeArrowNumbers(startModelBox, endModelBox);
-                removeFromView(toDelete);
-                removeFromView(toDelete.getSelection());
-            }
-        }
-        this.rootLayout.applyCss();
     }
 
 }

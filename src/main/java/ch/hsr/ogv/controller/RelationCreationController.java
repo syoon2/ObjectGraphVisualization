@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import ch.hsr.ogv.model.*;
 import ch.hsr.ogv.view.*;
 
-public class RelationCreationController extends Observable implements Observer {
+public class RelationCreationController implements MouseMoveController.MouseMoveEventListener {
 
     private SelectionController selectionController;
     private SubSceneAdapter subSceneAdapter;
@@ -88,11 +88,8 @@ public class RelationCreationController extends Observable implements Observer {
         this.startBox = startBox;
         setRelationType(relationType);
         initViewArrow(startBox, relationType);
-        listenToSelections();
         selectiveMouseEvents();
         paneBoxMovedOver(startBox);
-        setChanged();
-        notifyObservers(this.viewArrow);
     }
 
     private void initViewArrow(PaneBox startBox, RelationType relationType) {
@@ -150,7 +147,6 @@ public class RelationCreationController extends Observable implements Observer {
         this.isChoosingStartBox = false;
         this.creationInProcess = false;
         this.leftStartBox = false;
-        unlistenToSelections();
 
         if (this.viewArrow != null) {
             subSceneAdapter.remove(this.viewArrow.getSelection());
@@ -172,16 +168,6 @@ public class RelationCreationController extends Observable implements Observer {
         }
         subSceneAdapter.worldReceiveMouseEvents();
         subSceneAdapter.restrictMouseEvents(this.subSceneAdapter.getVerticalHelper());
-        setChanged();
-        notifyObservers(this.viewArrow);
-    }
-
-    private void listenToSelections() {
-        selectionController.addObserver(this);
-    }
-
-    private void unlistenToSelections() {
-        selectionController.deleteObserver(this);
     }
 
     private boolean isClassesRelation(RelationType relationType) {
@@ -386,20 +372,20 @@ public class RelationCreationController extends Observable implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof MouseMoveController && arg instanceof Point3D && this.isChoosingStartBox) { // choosing start box, mouseover non-box
+    public void handle(MouseMoveController.MouseMoveEvent event) {
+        if (event.getArgument() instanceof Point3D && this.isChoosingStartBox) { // choosing start box, mouseover non-box
             resetStartBox();
         }
-        else if (o instanceof MouseMoveController && arg instanceof PaneBox && this.isChoosingStartBox) { // choosing start box, mouseover box
-            PaneBox paneBoxMovedOver = (PaneBox) arg;
+        else if (event.getArgument() instanceof PaneBox && this.isChoosingStartBox) { // choosing start box, mouseover box
+            PaneBox paneBoxMovedOver = (PaneBox) event.getArgument();
             setStartBox(paneBoxMovedOver);
         }
-        else if (o instanceof MouseMoveController && arg instanceof Point3D && this.creationInProcess) {
-            Point3D movePoint = (Point3D) arg;
+        else if (event.getArgument() instanceof Point3D && this.creationInProcess) {
+            Point3D movePoint = (Point3D) event.getArgument();
             floorMovedOver(movePoint);
         }
-        else if (o instanceof MouseMoveController && arg instanceof PaneBox && this.creationInProcess) { // creation in process
-            PaneBox paneBoxMovedOver = (PaneBox) arg;
+        else if (event.getArgument() instanceof PaneBox && this.creationInProcess) { // creation in process
+            PaneBox paneBoxMovedOver = (PaneBox) event.getArgument();
             paneBoxMovedOver(paneBoxMovedOver);
         }
     }

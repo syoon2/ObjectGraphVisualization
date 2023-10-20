@@ -1,8 +1,10 @@
 package ch.hsr.ogv.controller;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Collections;
+import java.util.EventListener;
+import java.util.List;
+import java.util.Objects;
 
 import javafx.geometry.Point3D;
 import javafx.scene.SubScene;
@@ -11,15 +13,18 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Box;
 
+import ch.hsr.ogv.controller.event.ArgumentedEventObject;
 import ch.hsr.ogv.view.*;
 
-public class SelectionController extends Observable implements Observer {
+public class SelectionController implements DragController.DragChangeEventListener {
 
     private volatile Selectable previousSelected = null;
     private volatile Selectable currentSelected = null;
 
     private Point3D previousSelectionCoord;
     private Point3D currentSelectionCoord;
+
+    private transient List<SelectionChangeEventListener> listeners = Collections.synchronizedList(new ArrayList<>());
 
     public Point3D getPreviousSelectionCoord() {
         return previousSelectionCoord;
@@ -226,25 +231,48 @@ public class SelectionController extends Observable implements Observer {
             selectable.requestFocus();
             if (subSceneAdapter != null)
                 subSceneAdapter.getFloor().toFront();
-
-            setChanged();
-            notifyObservers(selectable);
         }
         else {
             this.currentSelected = null;
-
-            setChanged();
-            notifyObservers(selectable);
+        }
+        synchronized (listeners) {
+            var event = new SelectionChangeEvent(selectable);
+            for (var listener : listeners) {
+                listener.handle(event);
+            }
         }
     }
 
+    public void addListener(SelectionChangeEventListener listener) {
+        listeners.add(Objects.requireNonNull(listener));
+    }
+
+    public boolean removeListener(SelectionChangeEventListener listener) {
+        return listeners.remove(listener);
+    }
+
     @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof DragController) {
-            DragController dragController = (DragController) o;
-            if (!dragController.isDragInProgress() && hasCurrentSelection()) {
-                setSelected(getCurrentSelected(), true, null);
-            }
+    public void handle(DragController.DragChangeEvent event) {
+        DragController dragController = event.getSource();
+        if (!dragController.isDragInProgress() && hasCurrentSelection()) {
+            setSelected(getCurrentSelected(), true, null);
+        }
+    }
+
+    @FunctionalInterface
+    public static interface SelectionChangeEventListener extends EventListener {
+        void handle(SelectionChangeEvent event);
+    }
+
+    public class SelectionChangeEvent extends ArgumentedEventObject {
+
+        public SelectionChangeEvent(Object arg) {
+            super(SelectionController.this, arg);
+        }
+
+        @Override
+        public SelectionController getSource() {
+            return (SelectionController) super.source;
         }
     }
 

@@ -70,6 +70,7 @@ public class MouseMoveController {
             super(MouseMoveController.this, arg);
         }
 
+        @Override
         public MouseMoveController getSource() {
             return (MouseMoveController) super.source;
         }

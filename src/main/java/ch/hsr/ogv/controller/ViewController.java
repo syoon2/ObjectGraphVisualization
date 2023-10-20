@@ -8,8 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -34,7 +32,7 @@ import ch.hsr.ogv.util.MessageBar;
 import ch.hsr.ogv.util.MessageBar.MessageLevel;
 import ch.hsr.ogv.view.*;
 
-public class ViewController implements Observer, Initializable {
+public class ViewController implements DragController.DragChangeEventListener, Initializable, SelectionController.SelectionChangeEventListener {
 
     private Stage primaryStage;
     private String appTitle;
@@ -675,13 +673,32 @@ public class ViewController implements Observer, Initializable {
         initToggleRelationMap();
     }
 
-    // Refactor!!
+    /** @since 4.0 */
     @Override
-    public void update(Observable o, Object arg) {
+    public void handle(DragController.DragChangeEvent event) {
         if (selectionController == null) {
             return;
         }
-        else if (o instanceof SelectionController && arg instanceof Floor && selectionController.hasCurrentSelection() && createClass.isSelected() && !relationCreationController.isInProcess()) { // creating class
+        if (selectionController.hasCurrentSelection()
+            && !this.objectGraphMode.isSelected()
+            && (selectionController.getCurrentSelected().equals(subSceneAdapter)
+                || selectionController.getCurrentSelected().equals(subSceneAdapter.getFloor()))) { // SubSceneAdapter selected
+            createObject.setDisable(true);
+            deleteSelected.setDisable(true);
+            pickColorLabel.setDisable(this.relationCreationController.isChoosingStartBox());
+            pickColor.setDisable(this.relationCreationController.isChoosingStartBox());
+            pickColor.setValue(subSceneAdapter.getFloor().getColor());
+        }
+    }
+
+    /** @since 4.0 */
+    // Refactor!!
+    @Override
+    public void handle(SelectionController.SelectionChangeEvent event) {
+        if (selectionController == null) {
+            return;
+        }
+        else if (event.getArgument() instanceof Floor && selectionController.hasCurrentSelection() && createClass.isSelected() && !relationCreationController.isInProcess()) { // creating class
             PaneBox newPaneBox = mvConnector.handleCreateNewClass(selectionController.getCurrentSelectionCoord());
             if (newPaneBox != null) {
                 new QuickCreationController(newPaneBox, mvConnector);
@@ -691,13 +708,13 @@ public class ViewController implements Observer, Initializable {
             subSceneAdapter.worldReceiveMouseEvents();
             subSceneAdapter.restrictMouseEvents(subSceneAdapter.getVerticalHelper());
         }
-        else if (o instanceof SelectionController && arg instanceof Floor && selectionController.hasCurrentSelection() && relationCreationController.isInProcess()) {
+        else if (event.getArgument() instanceof Floor && selectionController.hasCurrentSelection() && relationCreationController.isInProcess()) {
             selectionController.setSelected(relationCreationController.getViewArrow(), true, subSceneAdapter);
         }
-        else if (o instanceof SelectionController && (arg instanceof PaneBox && (relationCreationController.isChoosingStartBox() || relationCreationController.isInProcess()) || arg instanceof Arrow)) { // PaneBox, Arrow selected
+        else if (event.getArgument() instanceof PaneBox && (relationCreationController.isChoosingStartBox() || relationCreationController.isInProcess()) || event.getArgument() instanceof Arrow) { // PaneBox, Arrow selected
             Selectable selectable = selectionController.getCurrentSelected();
             // creating relations
-            if ((selectionController.isCurrentSelected(selectable) && selectable instanceof PaneBox) || arg instanceof Floor) {
+            if ((selectionController.isCurrentSelected(selectable) && selectable instanceof PaneBox) || event.getArgument() instanceof Floor) {
                 PaneBox selectedPaneBox = (PaneBox) selectable;
                 if (!relationCreationController.isInProcess()) { // first selection
                     startRelationCreation(selectedPaneBox);
@@ -713,7 +730,7 @@ public class ViewController implements Observer, Initializable {
             }
         }
         // button enabling / disabling
-        if (o instanceof SelectionController && selectionController.hasCurrentSelection() && !relationCreationController.isInProcess() && !this.objectGraphMode.isSelected()) {
+        if (selectionController.hasCurrentSelection() && !relationCreationController.isInProcess() && !this.objectGraphMode.isSelected()) {
             disableAll(false);
             createObject.setDisable(true);
             Selectable selectable = selectionController.getCurrentSelected();

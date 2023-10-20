@@ -1,19 +1,16 @@
 package ch.hsr.ogv.controller;
 
 import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Objects;
 
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 
 import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.model.ModelBox.ModelBoxChange;
-import ch.hsr.ogv.model.Relation.RelationChange;
 import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.view.*;
 
-public class ModelController implements Observer {
+public class ModelController {
 
     private BorderPane rootLayout;
     private SubSceneAdapter subSceneAdapter;
@@ -43,7 +40,50 @@ public class ModelController implements Observer {
      */
     public void setMVConnector(ModelViewConnector mvConnector) {
         this.mvConnector = mvConnector;
-        this.mvConnector.getModelManager().addObserver(this);
+        this.mvConnector.getModelManager().addPropertyChangeListener(evt -> {
+            if (evt.getPropertyName().equals("class")) {
+                ModelClass modelClass = (ModelClass) Objects.requireNonNullElse(evt.getOldValue(), evt.getNewValue());
+                if (!this.mvConnector.containsModelBox(modelClass)) { // class is new
+                    showModelClassInView(modelClass);
+                    adaptBoxSettings(modelClass);
+                    adaptArrowToBox(modelClass);
+                }
+                else {
+                    PaneBox toDelete = this.mvConnector.removeBoxes(modelClass);
+                    removeFromView(toDelete.get());
+                    removeFromView(toDelete.getSelection());
+                }
+            }
+            else if (evt.getPropertyName().equals("object")) {
+                ModelObject modelObject = (ModelObject) Objects.requireNonNullElse(evt.getOldValue(), evt.getNewValue());
+                if (!this.mvConnector.containsModelBox(modelObject)) { // object is new
+                    showModelObjectInView(modelObject);
+                    adaptBoxSettings(modelObject);
+                    adaptArrowToBox(modelObject);
+                }
+                else {
+                    PaneBox toDelete = this.mvConnector.removeBoxes(modelObject);
+                    removeFromView(toDelete.get());
+                    removeFromView(toDelete.getSelection());
+                }
+            }
+            else if (evt.getPropertyName().equals("relation")) {
+                Relation relation = (Relation) Objects.requireNonNullElse(evt.getOldValue(), evt.getNewValue());
+                if (!this.mvConnector.containsRelation(relation)) { // relation is new
+                    showArrowInView(relation);
+                    adaptArrowColor(relation);
+                }
+                else {
+                    ModelBox startModelBox = relation.getStart().getAppendant();
+                    ModelBox endModelBox = relation.getEnd().getAppendant();
+                    Arrow toDelete = this.mvConnector.removeArrows(relation);
+                    this.mvConnector.arrangeArrowNumbers(startModelBox, endModelBox);
+                    removeFromView(toDelete);
+                    removeFromView(toDelete.getSelection());
+                }
+            }
+            this.rootLayout.applyCss();
+        });
     }
 
     public void setSelectionController(SelectionController selectionController) {
@@ -97,7 +137,37 @@ public class ModelController implements Observer {
      * @param modelClass
      */
     private void showModelClassInView(ModelClass modelClass) {
-        modelClass.addObserver(this);
+        modelClass.addPropertyChangeListener(evt -> {
+            String changedProperty = evt.getPropertyName();
+            switch (changedProperty) {
+                case "attribute":
+                    adaptCenterFields(modelClass);
+                    break;
+                case "color":
+                    adaptBoxColor(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                case "coordinates":
+                    adaptBoxCoordinates(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                case "height":
+                    adaptBoxHeight(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                case "name":
+                    adaptBoxTopField(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                case "width":
+                    adaptBoxWidth(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                default:
+                    break;
+            }
+            this.rootLayout.applyCss();
+        });
         PaneBox paneBox = new PaneBox();
         paneBox.setDepth(PaneBox.CLASSBOX_DEPTH);
         paneBox.setColor(modelClass.getColor());
@@ -116,7 +186,37 @@ public class ModelController implements Observer {
      * @param modelObject
      */
     private void showModelObjectInView(ModelObject modelObject) {
-        modelObject.addObserver(this);
+        modelObject.addPropertyChangeListener(evt -> {
+            String changedProperty = evt.getPropertyName();
+            switch (changedProperty) {
+                case "attribute":
+                    adaptCenterFields(modelObject);
+                    break;
+                case "color":
+                    adaptBoxColor(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                case "coordinates":
+                    adaptBoxCoordinates(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                case "height":
+                    adaptBoxHeight(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                case "name":
+                    adaptBoxTopField(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                case "width":
+                    adaptBoxWidth(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                default:
+                    break;
+            }
+            this.rootLayout.applyCss();
+        });
         PaneBox paneBox = new PaneBox();
         paneBox.setDepth(PaneBox.OBJECTBOX_DEPTH);
         paneBox.setColor(modelObject.getColor());
@@ -135,7 +235,23 @@ public class ModelController implements Observer {
      * @param relation
      */
     private void showArrowInView(Relation relation) {
-        relation.addObserver(this);
+        relation.addPropertyChangeListener(evt -> {
+            String changedProperty = evt.getPropertyName();
+            switch (changedProperty) {
+                case "color":
+                    adaptArrowColor(relation);
+                    break;
+                case "direction":
+                    adaptArrowDirection(relation);
+                    break;
+                case "multiplicity_role":
+                    adaptArrowLabel(relation);
+                    break;
+                default:
+                    break;
+            }
+            this.rootLayout.applyCss();
+        });
         ModelBox startModelBox = relation.getStart().getAppendant();
         ModelBox endModelBox = relation.getEnd().getAppendant();
         PaneBox startViewBox = this.mvConnector.getPaneBox(startModelBox);
@@ -531,105 +647,6 @@ public class ModelController implements Observer {
             this.textFieldController.enableCenterTextInput(modelObject, changedBox, this.mvConnector);
             this.contextMenuController.enableCenterFieldContextMenu(modelObject, changedBox, this.subSceneAdapter);
         }
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof ModelManager && arg instanceof ModelClass) {
-            ModelClass modelClass = (ModelClass) arg;
-            if (!this.mvConnector.containsModelBox(modelClass)) { // class is new
-                showModelClassInView(modelClass);
-                adaptBoxSettings(modelClass);
-                adaptArrowToBox(modelClass);
-            }
-            else {
-                PaneBox toDelete = this.mvConnector.removeBoxes(modelClass);
-                removeFromView(toDelete.get());
-                removeFromView(toDelete.getSelection());
-            }
-        }
-        else if (o instanceof ModelManager && arg instanceof ModelObject) {
-            ModelObject modelObject = (ModelObject) arg;
-            if (!this.mvConnector.containsModelBox(modelObject)) { // object is new
-                showModelObjectInView(modelObject);
-                adaptBoxSettings(modelObject);
-                adaptArrowToBox(modelObject);
-            }
-            else {
-                PaneBox toDelete = this.mvConnector.removeBoxes(modelObject);
-                removeFromView(toDelete.get());
-                removeFromView(toDelete.getSelection());
-            }
-        }
-        else if (o instanceof ModelManager && arg instanceof Relation) {
-            Relation relation = (Relation) arg;
-            if (!this.mvConnector.containsRelation(relation)) { // relation is new
-                showArrowInView(relation);
-                adaptArrowColor(relation);
-            }
-            else {
-                ModelBox startModelBox = relation.getStart().getAppendant();
-                ModelBox endModelBox = relation.getEnd().getAppendant();
-                Arrow toDelete = this.mvConnector.removeArrows(relation);
-                this.mvConnector.arrangeArrowNumbers(startModelBox, endModelBox);
-                removeFromView(toDelete);
-                removeFromView(toDelete.getSelection());
-            }
-        }
-        else if (o instanceof ModelClass && arg instanceof Attribute) {
-            ModelClass modelClass = (ModelClass) o;
-            adaptCenterFields(modelClass);
-        }
-        else if (o instanceof ModelObject && arg instanceof Attribute) {
-            ModelObject modelObject = (ModelObject) o;
-            adaptCenterFields(modelObject);
-        }
-        else if (o instanceof ModelBox && arg instanceof ModelBoxChange) {
-            ModelBox modelBox = (ModelBox) o;
-            ModelBoxChange modelBoxChange = (ModelBoxChange) arg;
-            switch (modelBoxChange) {
-                case COLOR:
-                    adaptBoxColor(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                case COORDINATES:
-                    adaptBoxCoordinates(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                case HEIGHT:
-                    adaptBoxHeight(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                case NAME:
-                    adaptBoxTopField(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                case WIDTH:
-                    adaptBoxWidth(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                default:
-                    break;
-            }
-        }
-        else if (o instanceof Relation && arg instanceof RelationChange) {
-            Relation relation = (Relation) o;
-            RelationChange relationChange = (RelationChange) arg;
-            switch (relationChange) {
-                case COLOR:
-                    adaptArrowColor(relation);
-                    break;
-                case DIRECTION:
-                    adaptArrowDirection(relation);
-                    break;
-                case MULTIPLCITY_ROLE:
-                    adaptArrowLabel(relation);
-                    break;
-                default:
-                    break;
-            }
-        }
-        this.rootLayout.applyCss();
     }
 
 }

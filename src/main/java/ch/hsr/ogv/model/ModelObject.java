@@ -84,15 +84,13 @@ public class ModelObject extends ModelBox {
 
     public void changeAttributeName(Attribute attribute, String name) {
         attribute.setName(name);
-        setChanged();
-        notifyObservers(attribute);
+        support.firePropertyChange("attribute", null, attribute);
     }
 
     public void changeAttributeValue(Attribute attribute, String value) {
         String oldValue = this.attributeValues.put(attribute, value);
         if (oldValue != null) {
-            setChanged();
-            notifyObservers(attribute);
+            support.firePropertyChange("attribute", null, attribute);
         }
     }
 
@@ -109,16 +107,14 @@ public class ModelObject extends ModelBox {
             return false;
         }
         attributeValues.put(attribute, attributeValue);
-        setChanged();
-        notifyObservers(attribute);
+        support.firePropertyChange("attribute", null, attribute);
         return true;
     }
 
     public String deleteAttributeValue(Attribute attribute) {
         String deleted = attributeValues.remove(attribute);
         if (deleted != null) {
-            setChanged();
-            notifyObservers(attribute);
+            support.firePropertyChange("attribute", attribute, null);
         }
         return deleted;
     }

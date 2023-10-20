@@ -1,13 +1,10 @@
 package ch.hsr.ogv.controller;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import ch.hsr.ogv.view.SubSceneAdapter;
 import ch.hsr.ogv.view.SubSceneCamera;
 import ch.hsr.ogv.view.Xform;
 
-public class CameraController implements Observer {
+public class CameraController implements DragController.DragChangeEventListener {
 
     private RotationCamera rotationCamera = new RotationCamera();
 
@@ -53,12 +50,13 @@ public class CameraController implements Observer {
         baseCamera.handleKeyboard(subSceneAdapter);
     }
 
+    /**
+     * @since 4.0
+     */
     @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof DragController) {
-            DragController dragController = (DragController) o;
-            setMoveCamera(!dragController.isDragInProgress());
-        }
+    public void handle(DragController.DragChangeEvent event) {
+        DragController dragController = event.getSource();
+        setMoveCamera(!dragController.isDragInProgress());
     }
 
 }

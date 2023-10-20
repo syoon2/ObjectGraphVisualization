@@ -1,8 +1,10 @@
 package ch.hsr.ogv.controller;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.Collections;
+import java.util.EventListener;
+import java.util.List;
+import java.util.Objects;
 
 import javafx.geometry.Point3D;
 import javafx.scene.SubScene;
@@ -11,15 +13,23 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Box;
 
+import ch.hsr.ogv.controller.event.ArgumentedEventObject;
 import ch.hsr.ogv.view.*;
 
-public class SelectionController extends Observable implements Observer {
+public class SelectionController implements DragController.DragChangeEventListener {
 
     private volatile Selectable previousSelected = null;
     private volatile Selectable currentSelected = null;
 
     private Point3D previousSelectionCoord;
     private Point3D currentSelectionCoord;
+
+    /**
+     * The list of listeners of this controller.
+     * 
+     * @since 4.0
+     */
+    private transient List<SelectionChangeEventListener> listeners = Collections.synchronizedList(new ArrayList<>());
 
     public Point3D getPreviousSelectionCoord() {
         return previousSelectionCoord;
@@ -226,25 +236,93 @@ public class SelectionController extends Observable implements Observer {
             selectable.requestFocus();
             if (subSceneAdapter != null)
                 subSceneAdapter.getFloor().toFront();
-
-            setChanged();
-            notifyObservers(selectable);
         }
         else {
             this.currentSelected = null;
-
-            setChanged();
-            notifyObservers(selectable);
+        }
+        synchronized (listeners) {
+            var event = new SelectionChangeEvent(selectable);
+            for (var listener : listeners) {
+                listener.handle(event);
+            }
         }
     }
 
+    /**
+     * Adds a listener to the listener list of this controller.
+     * 
+     * @param listener a listener
+     * @throws NullPointerException if argument is {@code null}
+     * 
+     * @since 4.0
+     */
+    public void addListener(SelectionChangeEventListener listener) {
+        listeners.add(Objects.requireNonNull(listener));
+    }
+
+    /**
+     * Removes a listener from the listener list of this controller.
+     * 
+     * @param listener the listener to be removed
+     * @return if the specified listener was removed by the call
+     * 
+     * @since 4.0
+     */
+    public boolean removeListener(SelectionChangeEventListener listener) {
+        return listeners.remove(listener);
+    }
+
+    /**
+     * @since 4.0
+     */
     @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof DragController) {
-            DragController dragController = (DragController) o;
-            if (!dragController.isDragInProgress() && hasCurrentSelection()) {
-                setSelected(getCurrentSelected(), true, null);
-            }
+    public void handle(DragController.DragChangeEvent event) {
+        DragController dragController = event.getSource();
+        if (!dragController.isDragInProgress() && hasCurrentSelection()) {
+            setSelected(getCurrentSelected(), true, null);
+        }
+    }
+
+    /**
+     * The listener interface for receiving selection change events.
+     * 
+     * @author Sung Ho Yoon
+     * @since 4.0
+     */
+    @FunctionalInterface
+    public static interface SelectionChangeEventListener extends EventListener {
+        /**
+         * Invoked when an event occurs.
+         * 
+         * @param event the event to be processed
+         */
+        void handle(SelectionChangeEvent event);
+    }
+
+    /**
+     * The event state object for mouse moves.
+     * 
+     * @author Sung Ho Yoon
+     * @since 4.0
+     */
+    public class SelectionChangeEvent extends ArgumentedEventObject {
+        /**
+         * Constructs a new {@code SelectionChangeEvent}.
+         * 
+         * @param arg an optional argument
+         */
+        public SelectionChangeEvent(Object arg) {
+            super(SelectionController.this, arg);
+        }
+
+        /**
+         * Returns the controller which generated this event.
+         * 
+         * @return the controller which generated this event
+         */
+        @Override
+        public SelectionController getSource() {
+            return (SelectionController) super.source;
         }
     }
 

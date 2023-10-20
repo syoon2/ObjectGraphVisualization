@@ -137,8 +137,8 @@ public class StageBuilder {
 
     private void initSelectionController() {
         this.selectionController.enableSubSceneSelection(this.subSceneAdapter);
-        this.selectionController.addObserver(this.viewController);
-        this.selectionController.addObserver(this.contextMenuController);
+        this.selectionController.addListener(this.viewController);
+        this.selectionController.addListener(this.contextMenuController);
     }
 
     private void initContextMenuController() {
@@ -150,7 +150,7 @@ public class StageBuilder {
 
     private void initMouseMoveController() {
         this.mouseMoveController.enableMouseMove(this.subSceneAdapter.getFloor());
-        this.mouseMoveController.addObserver(relationCreationController);
+        this.mouseMoveController.addListener(relationCreationController);
     }
 
     private void initCameraController() {
@@ -158,12 +158,12 @@ public class StageBuilder {
     }
 
     private void initDragController() {
-        this.dragMoveController.addObserver(this.cameraController);
-        this.dragMoveController.addObserver(this.viewController);
-        this.dragMoveController.addObserver(this.selectionController);
-        this.dragResizeController.addObserver(this.cameraController);
-        this.dragResizeController.addObserver(this.viewController);
-        this.dragResizeController.addObserver(this.selectionController);
+        this.dragMoveController.addListener(this.cameraController);
+        this.dragMoveController.addListener(this.viewController);
+        this.dragMoveController.addListener(this.selectionController);
+        this.dragResizeController.addListener(this.cameraController);
+        this.dragResizeController.addListener(this.viewController);
+        this.dragResizeController.addListener(this.selectionController);
     }
 
     private void initRelationCreationController() {

@@ -1,8 +1,5 @@
 package ch.hsr.ogv.controller;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import javafx.event.ActionEvent;
 import javafx.geometry.Point3D;
 import javafx.scene.control.*;
@@ -20,7 +17,7 @@ import ch.hsr.ogv.view.PaneBox;
 import ch.hsr.ogv.view.Selectable;
 import ch.hsr.ogv.view.SubSceneAdapter;
 
-public class ContextMenuController extends Observable implements Observer {
+public class ContextMenuController implements SelectionController.SelectionChangeEventListener {
 
     private ModelViewConnector mvConnector;
     private RelationCreationController relationCreationController;
@@ -596,12 +593,15 @@ public class ContextMenuController extends Observable implements Observer {
         return menuItem;
     }
 
+    /**
+     * @since 4.0
+     */
     @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof SelectionController && (arg instanceof PaneBox || arg instanceof Arrow)) {
-            SelectionController selectionController = (SelectionController) o;
+    public void handle(SelectionController.SelectionChangeEvent event) {
+        if (event.getArgument() instanceof PaneBox || event.getArgument() instanceof Arrow) {
+            SelectionController selectionController = event.getSource();
             if (selectionController.hasCurrentSelection()) {
-                this.selected = (Selectable) arg;
+                this.selected = (Selectable) event.getArgument();
             }
         }
     }

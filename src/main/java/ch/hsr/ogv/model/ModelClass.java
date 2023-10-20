@@ -234,8 +234,7 @@ public class ModelClass extends ModelBox {
         Attribute attribute = new Attribute(attributeName);
         boolean added = addAttribute(attribute);
         if (added) {
-            setChanged();
-            notifyObservers(attribute);
+            support.firePropertyChange("attribute", null, attribute);
             return attribute;
         }
         return null;
@@ -256,8 +255,7 @@ public class ModelClass extends ModelBox {
         Attribute thisAttribute = getAttributes().get(rowIndex);
         Attribute upperAttribute = getAttributes().set(rowIndex - 1, thisAttribute);
         getAttributes().set(rowIndex, upperAttribute);
-        setChanged();
-        notifyObservers(thisAttribute);
+        support.firePropertyChange("attribute", null, thisAttribute);
         for (ModelObject modelObject : this.modelObjects) {
             modelObject.changeAttributeName(thisAttribute, thisAttribute.getName());
             // modelObject.changeAttributeName(upperAttribute, upperAttribute.getName());
@@ -275,8 +273,7 @@ public class ModelClass extends ModelBox {
         Attribute thisAttribute = getAttributes().get(rowIndex);
         Attribute lowerAttribute = getAttributes().set(rowIndex + 1, thisAttribute);
         getAttributes().set(rowIndex, lowerAttribute);
-        setChanged();
-        notifyObservers(thisAttribute);
+        support.firePropertyChange("attribute", null, thisAttribute);
         for (ModelObject modelObject : this.modelObjects) {
             modelObject.changeAttributeName(thisAttribute, thisAttribute.getName());
             // modelObject.changeAttributeName(lowerAttribute, lowerAttribute.getName());
@@ -290,8 +287,7 @@ public class ModelClass extends ModelBox {
     public void changeAttributeName(int rowIndex, String name) throws IndexOutOfBoundsException {
         Attribute attribute = this.attributes.get(rowIndex);
         attribute.setName(name);
-        setChanged();
-        notifyObservers(attribute);
+        support.firePropertyChange("attribute", null, attribute);
         for (ModelObject modelObject : this.modelObjects) {
             modelObject.changeAttributeName(attribute, name);
         }
@@ -309,8 +305,7 @@ public class ModelClass extends ModelBox {
             inheritingObject.deleteAttributeValue(attribute);
         }
         if (deleted) {
-            setChanged();
-            notifyObservers(attribute);
+            support.firePropertyChange("attribute", attribute, null);
         }
         return deleted;
     }

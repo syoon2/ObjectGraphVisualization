@@ -1,5 +1,7 @@
 package ch.hsr.ogv.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.*;
 
 import javafx.geometry.Point3D;
@@ -15,7 +17,7 @@ import ch.hsr.ogv.dataaccess.ColorAdapter;
 import ch.hsr.ogv.dataaccess.Point3DAdapter;
 
 @XmlType(propOrder = {"name", "coordinates", "width", "height", "color", "endpoints"})
-public abstract class ModelBox extends Observable {
+public abstract class ModelBox {
 
     protected String name = "";
     protected Point3D coordinates = new Point3D(0, 0, 0);
@@ -23,6 +25,8 @@ public abstract class ModelBox extends Observable {
     protected double height = 100.0;
     protected Color color = Color.CORNSILK;
     protected List<Endpoint> endpoints = new ArrayList<Endpoint>();
+
+    protected transient PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     // for un/marshaling only
     public ModelBox() {
@@ -43,9 +47,9 @@ public abstract class ModelBox extends Observable {
     public void setName(String name) {
         // not doing the equals check here for when ModelObject needs a name change event
         if (this.name != null) {
+            String oldName = this.name;
             this.name = name;
-            setChanged();
-            notifyObservers(ModelBoxChange.NAME);
+            support.firePropertyChange("name", oldName, name);
         }
     }
 
@@ -56,9 +60,9 @@ public abstract class ModelBox extends Observable {
 
     public void setCoordinates(Point3D coordinates) {
         if (this.coordinates != null) {
+            Point3D oldCoordinates = this.coordinates;
             this.coordinates = coordinates;
-            setChanged();
-            notifyObservers(ModelBoxChange.COORDINATES);
+            support.firePropertyChange("coordinates", oldCoordinates, coordinates);
         }
     }
 
@@ -107,9 +111,9 @@ public abstract class ModelBox extends Observable {
 
     public void setWidth(double width) {
         if (this.width != width) {
+            double oldWidth = this.width;
             this.width = width;
-            setChanged();
-            notifyObservers(ModelBoxChange.WIDTH);
+            support.firePropertyChange("width", Double.valueOf(oldWidth), Double.valueOf(width));
         }
     }
 
@@ -119,9 +123,9 @@ public abstract class ModelBox extends Observable {
 
     public void setHeight(double height) {
         if (this.height != height) {
+            double oldHeight = this.height;
             this.height = height;
-            setChanged();
-            notifyObservers(ModelBoxChange.HEIGHT);
+            support.firePropertyChange("height", Double.valueOf(oldHeight), Double.valueOf(height));
         }
     }
 
@@ -132,9 +136,9 @@ public abstract class ModelBox extends Observable {
 
     public void setColor(Color color) {
         if (this.color != null && !this.color.equals(color)) {
+            Color oldColor = this.color;
             this.color = color;
-            setChanged();
-            notifyObservers(ModelBoxChange.COLOR);
+            support.firePropertyChange("color", oldColor, color);
         }
     }
 
@@ -169,7 +173,8 @@ public abstract class ModelBox extends Observable {
         return false;
     }
 
-    public enum ModelBoxChange {
-        COORDINATES, HEIGHT, WIDTH, NAME, COLOR;
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
     }
+
 }

@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 
 import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.model.ModelBox.ModelBoxChange;
 import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.view.*;
 
@@ -96,7 +95,37 @@ public class ModelController implements Observer {
      * @param modelClass
      */
     private void showModelClassInView(ModelClass modelClass) {
-        modelClass.addObserver(this);
+        modelClass.addPropertyChangeListener(evt -> {
+            String changedProperty = evt.getPropertyName();
+            switch (changedProperty) {
+                case "attribute":
+                    adaptCenterFields(modelClass);
+                    break;
+                case "color":
+                    adaptBoxColor(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                case "coordinates":
+                    adaptBoxCoordinates(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                case "height":
+                    adaptBoxHeight(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                case "name":
+                    adaptBoxTopField(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                case "width":
+                    adaptBoxWidth(modelClass);
+                    adaptArrowToBox(modelClass);
+                    break;
+                default:
+                    break;
+            }
+            this.rootLayout.applyCss();
+        });
         PaneBox paneBox = new PaneBox();
         paneBox.setDepth(PaneBox.CLASSBOX_DEPTH);
         paneBox.setColor(modelClass.getColor());
@@ -115,7 +144,37 @@ public class ModelController implements Observer {
      * @param modelObject
      */
     private void showModelObjectInView(ModelObject modelObject) {
-        modelObject.addObserver(this);
+        modelObject.addPropertyChangeListener(evt -> {
+            String changedProperty = evt.getPropertyName();
+            switch (changedProperty) {
+                case "attribute":
+                    adaptCenterFields(modelObject);
+                    break;
+                case "color":
+                    adaptBoxColor(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                case "coordinates":
+                    adaptBoxCoordinates(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                case "height":
+                    adaptBoxHeight(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                case "name":
+                    adaptBoxTopField(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                case "width":
+                    adaptBoxWidth(modelObject);
+                    adaptArrowToBox(modelObject);
+                    break;
+                default:
+                    break;
+            }
+            this.rootLayout.applyCss();
+        });
         PaneBox paneBox = new PaneBox();
         paneBox.setDepth(PaneBox.OBJECTBOX_DEPTH);
         paneBox.setColor(modelObject.getColor());
@@ -589,42 +648,6 @@ public class ModelController implements Observer {
                 this.mvConnector.arrangeArrowNumbers(startModelBox, endModelBox);
                 removeFromView(toDelete);
                 removeFromView(toDelete.getSelection());
-            }
-        }
-        else if (o instanceof ModelClass && arg instanceof Attribute) {
-            ModelClass modelClass = (ModelClass) o;
-            adaptCenterFields(modelClass);
-        }
-        else if (o instanceof ModelObject && arg instanceof Attribute) {
-            ModelObject modelObject = (ModelObject) o;
-            adaptCenterFields(modelObject);
-        }
-        else if (o instanceof ModelBox && arg instanceof ModelBoxChange) {
-            ModelBox modelBox = (ModelBox) o;
-            ModelBoxChange modelBoxChange = (ModelBoxChange) arg;
-            switch (modelBoxChange) {
-                case COLOR:
-                    adaptBoxColor(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                case COORDINATES:
-                    adaptBoxCoordinates(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                case HEIGHT:
-                    adaptBoxHeight(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                case NAME:
-                    adaptBoxTopField(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                case WIDTH:
-                    adaptBoxWidth(modelBox);
-                    adaptArrowToBox(modelBox);
-                    break;
-                default:
-                    break;
             }
         }
         this.rootLayout.applyCss();

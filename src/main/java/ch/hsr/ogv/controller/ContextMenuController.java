@@ -593,6 +593,9 @@ public class ContextMenuController implements SelectionController.SelectionChang
         return menuItem;
     }
 
+    /**
+     * @since 4.0
+     */
     @Override
     public void handle(SelectionController.SelectionChangeEvent event) {
         if (event.getArgument() instanceof PaneBox || event.getArgument() instanceof Arrow) {

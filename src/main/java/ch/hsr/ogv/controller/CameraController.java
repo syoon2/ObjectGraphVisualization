@@ -50,6 +50,9 @@ public class CameraController implements DragController.DragChangeEventListener 
         baseCamera.handleKeyboard(subSceneAdapter);
     }
 
+    /**
+     * @since 4.0
+     */
     @Override
     public void handle(DragController.DragChangeEvent event) {
         DragController dragController = event.getSource();

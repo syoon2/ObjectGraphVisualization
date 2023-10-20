@@ -17,6 +17,11 @@ public class Relation {
     private RelationType relationType = RelationType.UNDIRECTED_ASSOCIATION;
     private Color color = Color.BLACK;
 
+    /**
+     * The property change support utility.
+     * 
+     * @since 4.0
+     */
     private transient PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     // for un/marshaling only
@@ -153,6 +158,13 @@ public class Relation {
         support.firePropertyChange("multiplicity_role", oldRoleName, roleName);
     }
 
+    /**
+     * Adds a {@code PropertyChangeListener} to the listener list.
+     * 
+     * @param listener the {@code PropertyChangeListener} to be added
+     * 
+     * @since 4.0
+     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

@@ -673,6 +673,7 @@ public class ViewController implements DragController.DragChangeEventListener, I
         initToggleRelationMap();
     }
 
+    /** @since 4.0 */
     @Override
     public void handle(DragController.DragChangeEvent event) {
         if (selectionController == null) {
@@ -690,6 +691,7 @@ public class ViewController implements DragController.DragChangeEventListener, I
         }
     }
 
+    /** @since 4.0 */
     // Refactor!!
     @Override
     public void handle(SelectionController.SelectionChangeEvent event) {

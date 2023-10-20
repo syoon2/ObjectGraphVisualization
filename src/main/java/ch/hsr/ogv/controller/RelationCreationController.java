@@ -371,6 +371,9 @@ public class RelationCreationController implements MouseMoveController.MouseMove
         }
     }
 
+    /**
+     * @since 4.0
+     */
     @Override
     public void handle(MouseMoveController.MouseMoveEvent event) {
         if (event.getArgument() instanceof Point3D && this.isChoosingStartBox) { // choosing start box, mouseover non-box

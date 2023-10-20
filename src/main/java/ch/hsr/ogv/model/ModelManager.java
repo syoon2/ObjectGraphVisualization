@@ -15,6 +15,11 @@ public class ModelManager {
     private Set<ModelClass> classes = new LinkedHashSet<ModelClass>();
     private Set<Relation> relations = new LinkedHashSet<Relation>();
 
+    /**
+     * The property change support utility.
+     * 
+     * @since 4.0
+     */
     private transient PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public Set<ModelClass> getClasses() {
@@ -351,6 +356,13 @@ public class ModelManager {
         return relationList;
     }
 
+    /**
+     * Adds a {@code PropertyChangeListener} to the listener list.
+     * 
+     * @param listener the {@code PropertyChangeListener} to be added
+     * 
+     * @since 4.0
+     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

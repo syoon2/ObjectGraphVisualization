@@ -24,6 +24,11 @@ public class SelectionController implements DragController.DragChangeEventListen
     private Point3D previousSelectionCoord;
     private Point3D currentSelectionCoord;
 
+    /**
+     * The list of listeners of this controller.
+     * 
+     * @since 4.0
+     */
     private transient List<SelectionChangeEventListener> listeners = Collections.synchronizedList(new ArrayList<>());
 
     public Point3D getPreviousSelectionCoord() {
@@ -243,14 +248,33 @@ public class SelectionController implements DragController.DragChangeEventListen
         }
     }
 
+    /**
+     * Adds a listener to the listener list of this controller.
+     * 
+     * @param listener a listener
+     * @throws NullPointerException if argument is {@code null}
+     * 
+     * @since 4.0
+     */
     public void addListener(SelectionChangeEventListener listener) {
         listeners.add(Objects.requireNonNull(listener));
     }
 
+    /**
+     * Removes a listener from the listener list of this controller.
+     * 
+     * @param listener the listener to be removed
+     * @return if the specified listener was removed by the call
+     * 
+     * @since 4.0
+     */
     public boolean removeListener(SelectionChangeEventListener listener) {
         return listeners.remove(listener);
     }
 
+    /**
+     * @since 4.0
+     */
     @Override
     public void handle(DragController.DragChangeEvent event) {
         DragController dragController = event.getSource();
@@ -259,17 +283,43 @@ public class SelectionController implements DragController.DragChangeEventListen
         }
     }
 
+    /**
+     * The listener interface for receiving selection change events.
+     * 
+     * @author Sung Ho Yoon
+     * @since 4.0
+     */
     @FunctionalInterface
     public static interface SelectionChangeEventListener extends EventListener {
+        /**
+         * Invoked when an event occurs.
+         * 
+         * @param event the event to be processed
+         */
         void handle(SelectionChangeEvent event);
     }
 
+    /**
+     * The event state object for mouse moves.
+     * 
+     * @author Sung Ho Yoon
+     * @since 4.0
+     */
     public class SelectionChangeEvent extends ArgumentedEventObject {
-
+        /**
+         * Constructs a new {@code SelectionChangeEvent}.
+         * 
+         * @param arg an optional argument
+         */
         public SelectionChangeEvent(Object arg) {
             super(SelectionController.this, arg);
         }
 
+        /**
+         * Returns the controller which generated this event.
+         * 
+         * @return the controller which generated this event
+         */
         @Override
         public SelectionController getSource() {
             return (SelectionController) super.source;

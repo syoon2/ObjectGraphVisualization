@@ -26,6 +26,11 @@ public abstract class ModelBox {
     protected Color color = Color.CORNSILK;
     protected List<Endpoint> endpoints = new ArrayList<Endpoint>();
 
+    /**
+     * The property change support utility.
+     * 
+     * @since 4.0
+     */
     protected transient PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     // for un/marshaling only
@@ -173,6 +178,13 @@ public abstract class ModelBox {
         return false;
     }
 
+    /**
+     * Adds a {@code PropertyChangeListener} to the listener list.
+     * 
+     * @param listener the {@code PropertyChangeListener} to be added
+     * 
+     * @since 4.0
+     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

@@ -1,4 +1,4 @@
-# Object Graph Visualizer v.3.1
+# Object Graph Visualizer v4.0.0_dev
 
 ![alt tag](src/main/resources/images/OGV.png?raw=true)  
 [![CI](https://github.com/syoon2/ObjectGraphVisualization/actions/workflows/ci.yml/badge.svg)](https://github.com/syoon2/ObjectGraphVisualization/actions/workflows/ci.yml)
@@ -8,8 +8,6 @@
 
 Object Graph Visualizer is a tool primarily meant to be used in CS courses to help new students understand the Object Oriented paradigm and patterns. Classes and objects - that can be part of a software project - are visualised in 3D: The classes stay In the xz-plane in form of an UML class diagram. Directly above in the y-axis objects can be instantiated as an object diagram. Classes can be connected with all sorts of relations (Associations, Compositions, Generalization, etc.), objects with object relations.
 Following additional functionality is provided: Attributes, Mulitplicities, Roles, Object Graph Mode, Coloring, Save and Load, XMI 1.1 Import from Enterprise Architect, Associations (undirected, directed, bidirected), Aggregations, Compositions, Dependency, Generalization, Multiple Virtual Inheritance
-
-Developer Addendum: It shouldn't be too difficult to add an API for remote application control, e.g. visualize and debug a running programm. See class "ModelViewConnector". Any Contribution is welcome.
 
 ## Features
 
@@ -24,19 +22,10 @@ Developer Addendum: It shouldn't be too difficult to add an API for remote appli
 * Simulate Inheritance (virtual multiple)
 * Free camera placement (rotational)
 * Choose color for Classes, Objects, Relations, Background
-* OS: Windows, Mac, Linux
-* Runtime: Java 8u45
-* Paradigm: Object Oriented Programming
 
-## Release
+## Documentation
 
-[Object Graph Visualizer Version 3.1](https://github.com/Nurtak/ObjectGraphVisualization/releases)
-
-The Java Runnable requires [Java 11](https://adoptium.net/temurin/releases/?version=11).
-The Windows Installer and Standalone come prepacked with the runtime.
-More information and installation can be found in the [Instruction Manual](https://github.com/Nurtak/ObjectGraphVisualization/releases/download/v3.1/Instruction.Manual.pdf).
-
-In depth thesis is available in German: http://eprints.hsr.ch/459/
+In depth thesis by the original authors is available in German: http://eprints.hsr.ch/459/
 
 ## Screenshots
 

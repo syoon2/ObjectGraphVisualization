@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Artifact -->
-    <groupId>ch.hsr.ogv</groupId>
+    <groupId>com.github.syoon2</groupId>
     <artifactId>ogv</artifactId>
-    <version>3.2.0</version>
+    <version>4.0.0_dev</version>
 
     <!-- Versions -->
     <properties>
@@ -24,7 +24,6 @@
         <version.fxyzlib>0.3.0-patched</version.fxyzlib>
         <version.objimporterjfx>0.8</version.objimporterjfx>
         <version.junit5>5.10.0</version.junit5>
-        <version.junit.platform>1.10.0</version.junit.platform>
     </properties>
 
     <!-- Build -->

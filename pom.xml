@@ -24,6 +24,7 @@
         <version.fxyzlib>0.3.0-patched</version.fxyzlib>
         <version.objimporterjfx>0.8</version.objimporterjfx>
         <version.junit5>5.10.0</version.junit5>
+        <mainClass.name>ch.hsr.ogv.Main</mainClass.name>
     </properties>
 
     <!-- Build -->
@@ -38,6 +39,16 @@
         </extensions>
 
         <plugins>
+
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>${mainClass.name}</mainClass>
+                    <runtimePathOption>CLASSPATH</runtimePathOption>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -92,7 +103,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>ch.hsr.ogv.Main</mainClass>
+                            <mainClass>${mainClass.name}</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -110,7 +121,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>ch.hsr.ogv.Main</mainClass>
+                            <mainClass>${mainClass.name}</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

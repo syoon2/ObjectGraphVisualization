@@ -57,13 +57,6 @@
                 <version>3.1.2</version>
             </plugin>
 
-            <!-- Install jar in local repository -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>${version.maven-install-plugin}</version>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

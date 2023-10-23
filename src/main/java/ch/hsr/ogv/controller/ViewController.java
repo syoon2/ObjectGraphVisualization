@@ -211,7 +211,7 @@ public class ViewController implements DragController.DragChangeEventListener, I
         alert.setHeaderText("Object Graph Visualizer");
         alert.setContentText("Version:\t\t" + gitProperties.getProperty("git.build.version")
                              + "\nCommit:\t\t" + gitProperties.getProperty("git.commit.id.abbrev")
-                             + buildTime != null ? ("\nBuild time:\t" + buildTime.toString()) : ""
+                             + (buildTime != null ? ("\nBuild time:\t" + buildTime.toString()) : "")
                              + "\n\nDistributed under the MIT License.");
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image("file:resources/images/OGV.gif")); // add a custom icon

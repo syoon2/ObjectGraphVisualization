@@ -18,7 +18,7 @@ public class Main {
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
             LogManager.getLogger(MainApp.class).catching(throwable);
         });
-        Locale.setDefault(new Locale("en", "EN")); // set to English
+        Locale.setDefault(Locale.ENGLISH); // set to English
         Font.loadFont(ResourceLocator.getResourcePath(ResourceLocator.Resource.SEGOEUI_TTF).toExternalForm(), Font.getDefault().getSize());
         Font.loadFont(ResourceLocator.getResourcePath(ResourceLocator.Resource.LUCIDASANS_TTF).toExternalForm(), Font.getDefault().getSize());
         Application.launch(MainApp.class, args);

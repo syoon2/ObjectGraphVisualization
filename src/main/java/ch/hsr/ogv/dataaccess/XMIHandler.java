@@ -2,6 +2,7 @@ package ch.hsr.ogv.dataaccess;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.xml.sax.helpers.DefaultHandler;
@@ -17,7 +18,7 @@ import ch.hsr.ogv.model.Relation;
  */
 public class XMIHandler extends DefaultHandler {
 
-    protected ArrayList<XMIRelation> xmiRelations = new ArrayList<XMIRelation>();
+    protected List<XMIRelation> xmiRelations = new ArrayList<XMIRelation>();
     protected StringBuffer characters = new StringBuffer();
     protected Map<String, ModelClass> idClassMap = new LinkedHashMap<String, ModelClass>();
 
@@ -35,7 +36,7 @@ public class XMIHandler extends DefaultHandler {
      *
      * @return the read class associations
      */
-    public ArrayList<Relation> getRelations() {
+    public List<Relation> getRelations() {
         return finalizeXMIRelations();
     }
 
@@ -44,7 +45,7 @@ public class XMIHandler extends DefaultHandler {
      *
      * @return read classes
      */
-    public ArrayList<ModelClass> getClasses() {
+    public List<ModelClass> getClasses() {
         return new ArrayList<ModelClass>(idClassMap.values());
     }
 

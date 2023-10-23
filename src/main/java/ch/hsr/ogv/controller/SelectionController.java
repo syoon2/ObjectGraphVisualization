@@ -134,7 +134,7 @@ public class SelectionController implements DragController.DragChangeEventListen
         });
     }
 
-    private void selectOnMouseClicked(ArrayList<Label> centerLabels, PaneBox paneBox, SubSceneAdapter subSceneAdapter) {
+    private void selectOnMouseClicked(List<Label> centerLabels, PaneBox paneBox, SubSceneAdapter subSceneAdapter) {
         for (Label centerLabel : centerLabels) {
             centerLabel.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent me) -> {
                 if (MouseButton.PRIMARY.equals(me.getButton()) || MouseButton.SECONDARY.equals(me.getButton())) {

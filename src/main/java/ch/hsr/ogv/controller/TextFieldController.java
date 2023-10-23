@@ -1,6 +1,7 @@
 package ch.hsr.ogv.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javafx.beans.value.ChangeListener;
@@ -302,7 +303,7 @@ public class TextFieldController {
         });
 
 
-        ArrayList<ArrowLabel> tempArrowLabels = new ArrayList<ArrowLabel>();
+        List<ArrowLabel> tempArrowLabels = new ArrayList<ArrowLabel>();
         tempArrowLabels.add(arrow.getLabelStartLeft());
         tempArrowLabels.add(arrow.getLabelStartRight());
         tempArrowLabels.add(arrow.getLabelEndLeft());

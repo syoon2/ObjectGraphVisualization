@@ -1,6 +1,7 @@
 package ch.hsr.ogv.view;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -205,11 +206,11 @@ public class PaneBox implements Selectable {
         return this.topLabel;
     }
 
-    public ArrayList<Label> getCenterLabels() {
+    public List<Label> getCenterLabels() {
         return this.centerLabels;
     }
 
-    public ArrayList<TextField> getCenterTextFields() {
+    public List<TextField> getCenterTextFields() {
         return this.centerTextFields;
     }
 

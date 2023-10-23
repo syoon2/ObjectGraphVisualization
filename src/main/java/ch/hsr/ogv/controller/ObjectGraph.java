@@ -100,7 +100,7 @@ public class ObjectGraph {
             int centerLabelIndex = origSize + i;
             Endpoint friendEndpoint = ogCollector.getClassFriendEndpoints().get(i);
             Relation relation = friendEndpoint.getRelation();
-            ArrayList<ModelObject> modelObjects = ogCollector.getAssociatedObjects(friendEndpoint);
+            List<ModelObject> modelObjects = ogCollector.getAssociatedObjects(friendEndpoint);
             String upperBoundStr = ogCollector.getAllocates().get(friendEndpoint);
             if (!modelObjects.isEmpty() && upperBoundStr != null && !upperBoundStr.isEmpty() && upperBoundStr.equals("1")) { // direct reference
                 ModelObject firstRefObject = modelObjects.get(0);
@@ -198,7 +198,7 @@ public class ObjectGraph {
     }
 
     private void createArrayBoxAttributes(PaneBox arrayBox, Endpoint endpoint, ObjectGraphCollector ogCollector) {
-        ArrayList<ModelObject> modelObjects = ogCollector.getAssociatedObjects(endpoint);
+        List<ModelObject> modelObjects = ogCollector.getAssociatedObjects(endpoint);
         Integer upperBound = MultiplicityParser.toInteger(ogCollector.getAllocates().get(endpoint));
         if (upperBound == null) {
             upperBound = modelObjects.size();
@@ -213,7 +213,7 @@ public class ObjectGraph {
     }
 
     private void createArrayBoxArrows(PaneBox arrayBox, Endpoint endpoint, ObjectGraphCollector ogCollector) {
-        ArrayList<ModelObject> modelObjects = ogCollector.getAssociatedObjects(endpoint);
+        List<ModelObject> modelObjects = ogCollector.getAssociatedObjects(endpoint);
         for (int i = 0; i < arrayBox.getCenterLabels().size(); i++) {
             if (i < modelObjects.size()) {
                 ModelObject modelObject = modelObjects.get(i);

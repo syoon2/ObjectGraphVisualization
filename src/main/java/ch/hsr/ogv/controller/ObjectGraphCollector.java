@@ -2,8 +2,8 @@ package ch.hsr.ogv.controller;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import ch.hsr.ogv.model.*;
 import ch.hsr.ogv.util.MultiplicityParser;
@@ -23,7 +23,7 @@ public class ObjectGraphCollector {
         return modelObject;
     }
 
-    public ArrayList<Endpoint> getClassFriendEndpoints() {
+    public List<Endpoint> getClassFriendEndpoints() {
         return classFriendEndpoints;
     }
 
@@ -35,14 +35,14 @@ public class ObjectGraphCollector {
         return referenceNames;
     }
 
-    public ArrayList<ModelObject> getAssociatedObjects(Endpoint classEndpoint) {
-        ArrayList<ModelObject> retList = new ArrayList<ModelObject>();
-        ArrayList<Relation> objectRelations = this.classObjectRelations.get(classEndpoint);
+    public List<ModelObject> getAssociatedObjects(Endpoint classEndpoint) {
+        List<ModelObject> retList = new ArrayList<ModelObject>();
+        List<Relation> objectRelations = this.classObjectRelations.get(classEndpoint);
         if (objectRelations == null) {
             return retList;
         }
         for (Relation objectRelation : objectRelations) {
-            ArrayList<ModelObject> referencedObjects = this.objectReferences.get(objectRelation);
+            List<ModelObject> referencedObjects = this.objectReferences.get(objectRelation);
             if (referencedObjects == null) {
                 continue;
             }
@@ -115,7 +115,7 @@ public class ObjectGraphCollector {
     }
 
     private Endpoint getFirstEndpoint(String referenceName) {
-        for (Entry<Endpoint, String> entry : this.referenceNames.entrySet()) {
+        for (Map.Entry<Endpoint, String> entry : this.referenceNames.entrySet()) {
             if (entry.getValue().equals(referenceName)) {
                 return entry.getKey();
             }

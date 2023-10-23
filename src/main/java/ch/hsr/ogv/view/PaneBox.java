@@ -20,7 +20,7 @@ import javafx.scene.transform.Rotate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import ch.hsr.ogv.util.ColorUtil;
+import ch.hsr.ogv.dataaccess.ColorAdapter;
 import ch.hsr.ogv.util.FXMLResourceUtil;
 import ch.hsr.ogv.util.ResourceLocator.Resource;
 import ch.hsr.ogv.util.TextUtil;
@@ -117,7 +117,7 @@ public class PaneBox implements Selectable {
     }
 
     private String getPaneStyle() {
-        return "-fx-background-color: " + ColorUtil.colorToCssColor(getColor()) + ";\n" + "-fx-border-color: black;\n" + "-fx-border-width: 2;";
+        return "-fx-background-color: " + ColorAdapter.toCSSColor(getColor()) + ";\n" + "-fx-border-color: black;\n" + "-fx-border-width: 2;";
     }
 
     private void initLayout() {

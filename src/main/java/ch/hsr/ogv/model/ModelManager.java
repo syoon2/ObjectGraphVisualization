@@ -7,7 +7,6 @@ import java.util.*;
 import javafx.geometry.Point3D;
 import javafx.scene.paint.Color;
 
-import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.util.TextUtil;
 
 public class ModelManager {
@@ -93,7 +92,7 @@ public class ModelManager {
         }
         newZ += superClass.getHeight() / 2;
         Point3D modelObjectCoordinates = new Point3D(subObject.getX(), subObject.getY(), newZ);
-        ModelObject superObject = new ModelObject("", superClass, modelObjectCoordinates, subClass.getWidth(), superClass.getHeight(), ColorUtil.brighter(superClass.getColor(), 0.1));
+        ModelObject superObject = new ModelObject("", superClass, modelObjectCoordinates, subClass.getWidth(), superClass.getHeight(), superClass.getColor().deriveColor(0, 1, 1.1d, 1d));
         for (Attribute attribute : superClass.getAttributes()) {
             superObject.addAttributeValue(attribute, "");
         }

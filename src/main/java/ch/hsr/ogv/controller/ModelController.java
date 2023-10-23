@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 
 import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.view.*;
 
 public class ModelController {
@@ -540,10 +539,10 @@ public class ModelController {
         if (modelBox instanceof ModelClass) {
             ModelClass modelClass = (ModelClass) modelBox;
             for (ModelObject modelObject : modelClass.getModelObjects()) {
-                modelObject.setColor(ColorUtil.brighter(modelClass.getColor(), 0.1));
+                modelObject.setColor(modelClass.getColor().deriveColor(0d, 1d, 1.1d, 1d));
             }
             for (ModelObject inheritingObject : modelClass.getInheritingObjects()) {
-                inheritingObject.setColor(ColorUtil.brighter(modelClass.getColor(), 0.1));
+                inheritingObject.setColor(modelClass.getColor().deriveColor(0d, 1d, 1.1d, 1d));
             }
         }
     }

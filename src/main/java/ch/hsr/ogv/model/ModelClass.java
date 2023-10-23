@@ -13,8 +13,6 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlType;
 
-import ch.hsr.ogv.util.ColorUtil;
-
 @XmlType(propOrder = {"attributes", "modelObjects"})
 public class ModelClass extends ModelBox {
 
@@ -173,7 +171,7 @@ public class ModelClass extends ModelBox {
     public ModelObject createModelObject(String name) {
         double levelPlus = getTopLevel() + OBJECT_LEVEL_DIFF;
         Point3D modelObjectCoordinates = new Point3D(this.getX(), levelPlus, this.getZ());
-        ModelObject modelObject = new ModelObject(name, this, modelObjectCoordinates, this.getWidth(), this.getHeight(), ColorUtil.brighter(this.getColor(), 0.1));
+        ModelObject modelObject = new ModelObject(name, this, modelObjectCoordinates, this.getWidth(), this.getHeight(), this.getColor().deriveColor(0d, 1d, 1.1d, 1d));
         for (Attribute attribute : getAttributes()) {
             modelObject.addAttributeValue(attribute, "");
         }

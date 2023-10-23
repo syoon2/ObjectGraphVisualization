@@ -13,7 +13,6 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 
 import ch.hsr.ogv.model.RelationType;
-import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.util.GeometryUtil;
 
 public class Arrow extends Group implements Selectable {
@@ -479,10 +478,10 @@ public class Arrow extends Group implements Selectable {
         applyColor(this.line, colorToApply);
         this.arrowStart.setColor(colorToApply);
         this.arrowEnd.setColor(colorToApply);
-        this.labelStartRight.setColor(ColorUtil.darker(colorToApply, 0.3));
-        this.labelStartLeft.setColor(ColorUtil.darker(colorToApply, 0.3));
-        this.labelEndRight.setColor(ColorUtil.darker(colorToApply, 0.3));
-        this.labelEndLeft.setColor(ColorUtil.darker(colorToApply, 0.3));
+        this.labelStartRight.setColor(colorToApply.deriveColor(0, 1, 0.7d, 1d));
+        this.labelStartLeft.setColor(colorToApply.deriveColor(0, 1, 0.7d, 1d));
+        this.labelEndRight.setColor(colorToApply.deriveColor(0, 1, 0.7d, 1d));
+        this.labelEndLeft.setColor(colorToApply.deriveColor(0, 1, 0.7d, 1d));
         this.selection.setVisible(selected);
         if (!selected) {
             setAllLabelSelected(false);

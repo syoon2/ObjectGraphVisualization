@@ -26,7 +26,6 @@ import javafx.stage.Stage;
 
 import ch.hsr.ogv.dataaccess.*;
 import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.util.MessageBar;
 import ch.hsr.ogv.util.MessageBar.MessageLevel;
 import ch.hsr.ogv.view.*;
@@ -668,7 +667,7 @@ public class ViewController implements DragController.DragChangeEventListener, I
         this.pickColor.getCustomColors().add(SubSceneAdapter.DEFAULT_COLOR);
         this.pickColor.getCustomColors().add(Floor.DEFAULT_COLOR);
         this.pickColor.getCustomColors().add(PaneBox.DEFAULT_COLOR);
-        this.pickColor.getCustomColors().add(ColorUtil.brighter(PaneBox.DEFAULT_COLOR, 0.1));
+        this.pickColor.getCustomColors().add(PaneBox.DEFAULT_COLOR.deriveColor(0d, 1d, 1.1d, 1d));
         initToggleRelationMap();
     }
 

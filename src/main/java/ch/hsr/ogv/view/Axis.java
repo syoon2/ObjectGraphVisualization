@@ -5,15 +5,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 
-import ch.hsr.ogv.util.ColorUtil;
-
 public class Axis extends Group {
 
     private static final int LENGTH = 200;
     private static final int WIDTH = 2;
 
     private Color getBrighterColor(Color c) {
-        return ColorUtil.brighter(c, 0.9);
+        return c.deriveColor(0d, 1d, 1.9d, 1d);
     }
 
     public Axis() {

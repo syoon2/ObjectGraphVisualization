@@ -6,7 +6,6 @@ import java.util.List;
 import javafx.geometry.Point3D;
 
 import ch.hsr.ogv.model.*;
-import ch.hsr.ogv.util.ColorUtil;
 import ch.hsr.ogv.util.MultiplicityParser;
 import ch.hsr.ogv.view.Arrow;
 import ch.hsr.ogv.view.ConnectorBox;
@@ -178,7 +177,7 @@ public class ObjectGraph {
         paneBox.setTopText(" : " + modelClass.getName() + "[" + upperBoundStr + "]");
         paneBox.setTopUnderline(true);
         paneBox.setIndexCenterGrid(0);
-        paneBox.setColor(ColorUtil.brighter(modelClass.getColor(), 0.1));
+        paneBox.setColor(modelClass.getColor().deriveColor(0d, 1d, 1.1d, 1d));
         Point3D newPosition = modelObject.getCoordinates().midpoint(modelClass.getCoordinates());
         // newPosition = modelObject.getCoordinates().midpoint(newPosition);
         if (!relation.isReflexive()) {

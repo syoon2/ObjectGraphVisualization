@@ -24,7 +24,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import ch.hsr.ogv.MainApp;
 import ch.hsr.ogv.dataaccess.*;
 import ch.hsr.ogv.model.*;
 import ch.hsr.ogv.util.ColorUtil;

@@ -1,12 +1,13 @@
 package ch.hsr.ogv.dataaccess;
 
-import ch.hsr.ogv.model.ModelClass;
-import ch.hsr.ogv.model.Relation;
-import org.xml.sax.helpers.DefaultHandler;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.xml.sax.helpers.DefaultHandler;
+
+import ch.hsr.ogv.model.ModelClass;
+import ch.hsr.ogv.model.Relation;
 
 /**
  * This class is the Definition for a XMI Handler.

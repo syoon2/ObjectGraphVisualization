@@ -1,9 +1,10 @@
 package ch.hsr.ogv.dataaccess;
 
-import ch.hsr.ogv.util.ColorUtil;
 import javafx.scene.paint.Color;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+
+import ch.hsr.ogv.util.ColorUtil;
 
 public class ColorAdapter extends XmlAdapter<String, Color> {
 

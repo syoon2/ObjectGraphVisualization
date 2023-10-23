@@ -1,10 +1,10 @@
 package ch.hsr.ogv.dataaccess;
 
-import ch.hsr.ogv.model.ModelClass;
-import ch.hsr.ogv.model.Relation;
-
 import java.io.File;
 import java.util.Set;
+
+import ch.hsr.ogv.model.ModelClass;
+import ch.hsr.ogv.model.Relation;
 
 public interface SerializationStrategy {
 

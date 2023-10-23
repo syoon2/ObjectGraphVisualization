@@ -1,10 +1,11 @@
 package ch.hsr.ogv.dataaccess;
 
-import ch.hsr.ogv.util.MessageBar;
-import ch.hsr.ogv.util.MessageBar.MessageLevel;
+import java.io.File;
+
 import javafx.stage.Stage;
 
-import java.io.File;
+import ch.hsr.ogv.util.MessageBar;
+import ch.hsr.ogv.util.MessageBar.MessageLevel;
 
 public class LoadCallback implements PersistenceCallback {
 

@@ -1,23 +1,25 @@
 package ch.hsr.ogv.dataaccess;
 
-import ch.hsr.ogv.model.ModelClass;
-import ch.hsr.ogv.model.Relation;
-import ch.hsr.ogv.util.MessageBar;
-import ch.hsr.ogv.util.MessageBar.MessageLevel;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.xml.sax.SAXException;
+
+import ch.hsr.ogv.model.ModelClass;
+import ch.hsr.ogv.model.Relation;
+import ch.hsr.ogv.util.MessageBar;
+import ch.hsr.ogv.util.MessageBar.MessageLevel;
 
 /**
  * This class represents a XMI Parser. It reads the Version of the XMI File and use an according handler. If no handler

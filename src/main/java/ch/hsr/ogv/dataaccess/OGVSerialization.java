@@ -1,10 +1,8 @@
 package ch.hsr.ogv.dataaccess;
 
-import ch.hsr.ogv.model.ModelClass;
-import ch.hsr.ogv.model.Relation;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.io.File;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -14,9 +12,13 @@ import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
-import java.io.File;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import ch.hsr.ogv.model.ModelClass;
+import ch.hsr.ogv.model.Relation;
 
 @XmlRootElement(name = "model")
 @XmlType(propOrder = {"classes", "relations"})

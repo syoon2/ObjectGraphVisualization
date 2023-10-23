@@ -1,13 +1,14 @@
 package ch.hsr.ogv.dataaccess;
 
-import ch.hsr.ogv.model.Attribute;
-import ch.hsr.ogv.model.ModelClass;
-import ch.hsr.ogv.model.RelationType;
-import org.xml.sax.Attributes;
-
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.xml.sax.Attributes;
+
+import ch.hsr.ogv.model.Attribute;
+import ch.hsr.ogv.model.ModelClass;
+import ch.hsr.ogv.model.RelationType;
 
 /**
  * This Class is a handler for parsing XMI 1.1 files from Enterprise Architect.

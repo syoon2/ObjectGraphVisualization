@@ -1,14 +1,15 @@
 package ch.hsr.ogv.dataaccess;
 
-import ch.hsr.ogv.controller.ModelViewConnector;
-import ch.hsr.ogv.model.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.geometry.Point3D;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import ch.hsr.ogv.controller.ModelViewConnector;
+import ch.hsr.ogv.model.*;
 
 public class Persistence {
 

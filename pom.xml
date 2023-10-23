@@ -9,6 +9,8 @@
     <artifactId>ogv</artifactId>
     <version>4.0.0_dev</version>
 
+    <name>ObjectGraphVisualization</name>
+
     <!-- Versions -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

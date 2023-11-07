@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2018 Simon Gwerder, Adrian Rieser, Thomas Letsch
+Copyright (c) 2018 Simon Gwerder, Adrian Rieser, Thomas Letsch  
 Copyright (c) 2023 Sung Ho Yoon
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

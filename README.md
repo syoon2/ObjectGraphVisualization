@@ -25,7 +25,7 @@ Following additional functionality is provided: Attributes, Mulitplicities, Role
 
 ## Documentation
 
-In depth thesis by the original authors is available in German: http://eprints.hsr.ch/459/
+In depth thesis by the original authors is available in German: <http://eprints.hsr.ch/459/>
 
 ## Screenshots
 

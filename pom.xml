@@ -17,7 +17,6 @@
 
         <version.jdk>11</version.jdk>
         <version.os-maven-plugin>1.7.1</version.os-maven-plugin>
-        <version.maven-install-plugin>3.1.1</version.maven-install-plugin>
         <version.maven-compiler-plugin>3.11.0</version.maven-compiler-plugin>
         <version.maven-jar-plugin>3.3.0</version.maven-jar-plugin>
         <version.maven-assembly-plugin>3.6.0</version.maven-assembly-plugin>
@@ -53,12 +52,16 @@
             </plugin>
 
             <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+
+            <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.2</version>
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.6.1</version>
                 <executions>
@@ -80,7 +83,6 @@
 
             <!-- Compile -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${version.maven-compiler-plugin}</version>
                 <configuration>
@@ -91,7 +93,6 @@
 
             <!-- Assembly -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>${version.maven-jar-plugin}</version>
                 <configuration>
@@ -104,7 +105,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>${version.maven-assembly-plugin}</version>
                 <configuration>

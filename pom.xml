@@ -17,7 +17,7 @@
 
         <version.jdk>11</version.jdk>
         <version.os-maven-plugin>1.7.1</version.os-maven-plugin>
-        <version.maven-compiler-plugin>3.12.0</version.maven-compiler-plugin>
+        <version.maven-compiler-plugin>3.12.1</version.maven-compiler-plugin>
         <version.maven-jar-plugin>3.3.0</version.maven-jar-plugin>
         <version.maven-assembly-plugin>3.6.0</version.maven-assembly-plugin>
         <version.log4j>2.22.0</version.log4j>

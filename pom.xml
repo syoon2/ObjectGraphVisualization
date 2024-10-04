@@ -24,7 +24,7 @@
         <version.openjfx>11.0.2</version.openjfx>
         <version.fxyzlib>0.3.0-patched</version.fxyzlib>
         <version.objimporterjfx>0.8</version.objimporterjfx>
-        <version.junit5>5.11.0</version.junit5>
+        <version.junit5>5.11.2</version.junit5>
         <mainClass.name>ch.hsr.ogv.Main</mainClass.name>
     </properties>
 
